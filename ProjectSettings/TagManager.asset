@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1981896927
+    locked: 0
+  - name: Egg
+    uniqueID: 3787060067
+    locked: 0
+  - name: Floor
+    uniqueID: 2336527935
+    locked: 0
