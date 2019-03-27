@@ -2,14 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EggColor
-{
-    Yellow,
-    Green,
-    Red,
-    Blue
-}
-
 public class EggsPanel : MonoBehaviour
 {
     public GameObject[] availableBasicEggs;
@@ -19,6 +11,7 @@ public class EggsPanel : MonoBehaviour
     int remainingEggs;
 
     const float extraEggPositionY =  0.70f;
+    const string basicEggName = "BasicEgg";
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +30,8 @@ public class EggsPanel : MonoBehaviour
             eggs[i] = Instantiate(availableBasicEggs[Random.Range(0, availableBasicEggs.Length)],
                                     eggPosition, 
                                     Quaternion.identity);
+            eggs[i].name = i + "-" + basicEggName;
+
             remainingEggs ++;
         }
     }

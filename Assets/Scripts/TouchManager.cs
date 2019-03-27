@@ -13,7 +13,8 @@ public class TouchManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
             if (hit.collider != null) {
-                Debug.Log(hit.collider.gameObject.name);
+                BasicEgg touchedEgg = (BasicEgg) hit.collider.gameObject.GetComponent(typeof(BasicEgg));
+                touchedEgg.Touch();
             }
         }
     }
