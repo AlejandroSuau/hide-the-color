@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class EggsPanel : MonoBehaviour
 {
-    public GameObject[] availableBasicEggs;
+    public BasicEgg[] availableBasicEggs;
 
-    public GameObject[] floors;
-    public GameObject[] eggs;
+    public GameObject[] platforms;
+    public BasicEgg[] eggs;
     int remainingEggs;
 
     const float extraEggPositionY =  0.70f;
-    const string basicEggName = "BasicEgg";
 
     // Start is called before the first frame update
     void Start()
     {
-        eggs = new GameObject[floors.Length];
+        eggs = new BasicEgg[platforms.Length];
         remainingEggs = 0;
         SpawnEggs();
     }
@@ -24,13 +23,14 @@ public class EggsPanel : MonoBehaviour
     void SpawnEggs()
     {
         for(int i = 0; i < eggs.Length; i++) {
-            Vector3 eggPosition = floors[i].GetComponent<Transform>().position;
+            Vector3 eggPosition = platforms[i].GetComponent<Transform>().position;
             eggPosition.y += extraEggPositionY;
 
-            eggs[i] = Instantiate(availableBasicEggs[Random.Range(0, availableBasicEggs.Length)],
-                                    eggPosition, 
-                                    Quaternion.identity);
-            eggs[i].name = i + "-" + basicEggName;
+            eggs[i] = (BasicEgg) Instantiate(
+                availableBasicEggs[Random.Range(0, availableBasicEggs.Length)],
+                eggPosition, 
+                Quaternion.identity);
+            eggs[i].name = i + "-" + BasicEgg.EGG_TYPE_NAME;
 
             remainingEggs ++;
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BasicEgg : MonoBehaviour, IEgg
 {
+    public const string EGG_TYPE_NAME = "Basic";
     public EggColor eggColor;
 
     public void Touch()
