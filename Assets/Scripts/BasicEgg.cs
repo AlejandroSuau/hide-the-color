@@ -8,21 +8,30 @@ public class BasicEgg : MonoBehaviour, IEgg
     
     private GameColor color;
     private SpriteRenderer spriteRenderer;
+    private int lifes = 1; 
 
     public void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Touch()
+    public void Touch(int damage)
     {
         Debug.Log("Touched {name: " + name + ", color: " + color + "}");
+        lifes -= damage;
+        if (IsDeath())
+            gameObject.SetActive(false);
     }
 
     public void SetColor(GameColor color)
     {
         this.color = color;
         spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/" + GetSpriteName());
+    }
+
+    public bool IsDeath()
+    {
+        return lifes <= 0;
     }
 
     public string GetSpriteName()

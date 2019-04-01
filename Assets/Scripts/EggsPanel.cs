@@ -1,25 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EggsPanel : MonoBehaviour
 {
+    public Text eggsCounter;
     public GameObject[] platforms;
     
     private BasicEgg[] eggs;
+    private int destroyedEggs;
     private int remainingEggs;
 
     const float extraEggPositionY =  0.70f;
 
-    // Start is called before the first frame update
     void Start()
     {
         eggs = new BasicEgg[platforms.Length];
+        destroyedEggs = 0;
         remainingEggs = 0;
         SpawnEggs();
     }
 
-    void SpawnEggs()
+    public void SpawnEggs()
     {
         for(int i = 0; i < eggs.Length; i++) {
             Vector3 eggPosition = platforms[i].GetComponent<Transform>().position;
@@ -33,5 +36,38 @@ public class EggsPanel : MonoBehaviour
             eggs[i] = newEgg;
             remainingEggs ++;
         }
+    }
+
+    public void CleanPanel()
+    {
+        for(int i = 0; i < eggs.Length; i++) {
+            Destroy(eggs[i]);
+            eggs[i] = null;
+        }
+    }
+
+    public bool IsEmpty()
+    {
+        return remainingEggs <= 0;
+    }
+
+    public void TouchEgg(BasicEgg egg, int damage)
+    {
+        egg.Touch(damage);
+        if (egg.IsDeath()) {
+            destroyedEggs ++;
+            UpdateEggsCounterText();
+            
+            remainingEggs --;
+            if(IsEmpty()) {
+                CleanPanel();
+                SpawnEggs();
+            }
+        }
+    }
+
+    void UpdateEggsCounterText()
+    {
+        eggsCounter.text = destroyedEggs.ToString();
     }
 }

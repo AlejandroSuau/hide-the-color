@@ -7,20 +7,18 @@ public class ScreenManager : MonoBehaviour
     private Player player;
     private EggsPanel eggsPanel;
 
-    // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<Player>();
         eggsPanel = GetComponent<EggsPanel>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) {
-            BasicEgg touchedEgg = GetEggIfTouched();
-            if(touchedEgg != null) {
-                touchedEgg.Touch();
+            BasicEgg egg = GetEggIfTouched();
+            if(egg != null) {
+                eggsPanel.TouchEgg(egg, player.GetDamage());
             }
         }
     }

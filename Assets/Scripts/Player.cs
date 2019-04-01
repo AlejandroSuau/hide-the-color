@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private int damage = 1;
     private GameColor color;
     private SpriteRenderer spriteRenderer;
 
@@ -21,5 +22,10 @@ public class Player : MonoBehaviour
     string GetSpriteName()
     {
         return "Player-" + color;
+    }
+
+    public int GetDamage()
+    {
+        return damage;
     }
 }
