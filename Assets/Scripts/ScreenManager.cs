@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ScreenManager : MonoBehaviour
 {
-    public Player player;
-    public EggsPanel eggsPanel;
-
+    private Player player;
+    private EggsPanel eggsPanel;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GetComponent<Player>();
+        eggsPanel = GetComponent<EggsPanel>();
     }
 
     // Update is called once per frame

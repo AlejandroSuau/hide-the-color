@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class EggsPanel : MonoBehaviour
 {
-    public BasicEgg[] availableBasicEggs;
-
     public GameObject[] platforms;
-    public BasicEgg[] eggs;
-    int remainingEggs;
+    
+    private BasicEgg[] eggs;
+    private int remainingEggs;
 
     const float extraEggPositionY =  0.70f;
 
@@ -26,12 +25,12 @@ public class EggsPanel : MonoBehaviour
             Vector3 eggPosition = platforms[i].GetComponent<Transform>().position;
             eggPosition.y += extraEggPositionY;
 
-            eggs[i] = (BasicEgg) Instantiate(
-                availableBasicEggs[Random.Range(0, availableBasicEggs.Length)],
-                eggPosition, 
-                Quaternion.identity);
-            eggs[i].name = i + "-" + BasicEgg.EGG_TYPE_NAME;
-
+            BasicEgg newEgg = (BasicEgg) Instantiate(
+                Resources.Load<BasicEgg>("Prefabs/BasicEgg"), eggPosition, Quaternion.identity);
+            newEgg.name =  i + "-" + BasicEgg.EGG_TYPE_NAME;
+            newEgg.SetColor(ColorsManager.instance.GetRandomColor());
+            
+            eggs[i] = newEgg;
             remainingEggs ++;
         }
     }

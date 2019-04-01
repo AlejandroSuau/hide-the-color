@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public EggColor currentColor;
+    private GameColor color;
+    private SpriteRenderer spriteRenderer;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void SetColor(GameColor color)
     {
-        
+        this.color = color;
+        spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/" + GetSpriteName());
+    }
+
+    string GetSpriteName()
+    {
+        return "Player-" + color;
     }
 }
