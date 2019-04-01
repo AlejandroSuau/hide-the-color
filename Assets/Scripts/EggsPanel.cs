@@ -41,7 +41,7 @@ public class EggsPanel : MonoBehaviour
     public void CleanPanel()
     {
         for(int i = 0; i < eggs.Length; i++) {
-            Destroy(eggs[i]);
+            eggs[i].DestroyGO();
             eggs[i] = null;
         }
     }
@@ -51,9 +51,9 @@ public class EggsPanel : MonoBehaviour
         return remainingEggs <= 0;
     }
 
-    public void TouchEgg(BasicEgg egg, int damage)
+    public void TouchEgg(BasicEgg egg, GameColor color, int damage)
     {
-        egg.Touch(damage);
+        egg.Touch(color, damage);
         if (egg.IsDeath()) {
             destroyedEggs ++;
             UpdateEggsCounterText();

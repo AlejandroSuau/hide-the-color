@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IEgg
 {
-    void Touch(int damage);
+    void Touch(GameColor color, int damage);
 }

@@ -15,12 +15,14 @@ public class BasicEgg : MonoBehaviour, IEgg
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Touch(int damage)
+    public void Touch(GameColor color, int damage)
     {
         Debug.Log("Touched {name: " + name + ", color: " + color + "}");
-        lifes -= damage;
-        if (IsDeath())
-            gameObject.SetActive(false);
+        if (this.color == color) {
+            lifes -= damage;
+            if (IsDeath())
+                gameObject.SetActive(false);
+        }
     }
 
     public void SetColor(GameColor color)
@@ -37,5 +39,10 @@ public class BasicEgg : MonoBehaviour, IEgg
     public string GetSpriteName()
     {
         return BasicEgg.EGG_TYPE_NAME + "-" + color;
+    }
+
+    public void DestroyGO()
+    {
+        Destroy(gameObject);
     }
 }

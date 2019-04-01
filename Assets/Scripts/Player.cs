@@ -15,11 +15,11 @@ public class Player : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         changingColorCoroutine = ChangeColor(timeToChangeColor);
+        StartCoroutine(changingColorCoroutine);
     }
 
     void Start()
     {
-        Debug.Log("Buenas que hay");
         SetColor(ColorsManager.instance.GetRandomColor());
     }
 
@@ -37,6 +37,11 @@ public class Player : MonoBehaviour
     public int GetDamage()
     {
         return damage;
+    }
+
+    public GameColor GetColor()
+    {
+        return color;
     }
 
     private IEnumerator ChangeColor(float waitTime)
