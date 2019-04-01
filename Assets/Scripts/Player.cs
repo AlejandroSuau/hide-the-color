@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public float timeToChangeColor = 1.5f;
+    private IEnumerator changingColorCoroutine;
+    
     private int damage = 1;
     private GameColor color;
     private SpriteRenderer spriteRenderer;
@@ -11,9 +14,16 @@ public class Player : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        changingColorCoroutine = ChangeColor(timeToChangeColor);
     }
 
-    void SetColor(GameColor color)
+    void Start()
+    {
+        Debug.Log("Buenas que hay");
+        SetColor(ColorsManager.instance.GetRandomColor());
+    }
+
+    public void SetColor(GameColor color)
     {
         this.color = color;
         spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/" + GetSpriteName());
@@ -27,5 +37,13 @@ public class Player : MonoBehaviour
     public int GetDamage()
     {
         return damage;
+    }
+
+    private IEnumerator ChangeColor(float waitTime)
+    {
+        while(true) {
+            yield return new WaitForSeconds(waitTime);
+            SetColor(ColorsManager.instance.GetRandomColorDistinctTo(color));
+        }
     }
 }

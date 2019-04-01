@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class ScreenManager : MonoBehaviour
 {
-    private Player player;
+    public GameObject playerGO;
+    
+    private Player playerScript;
     private EggsPanel eggsPanel;
 
     void Start()
     {
-        player = GetComponent<Player>();
         eggsPanel = GetComponent<EggsPanel>();
+        playerScript = playerGO.GetComponent<Player>();
     }
 
     void Update()
@@ -18,7 +20,7 @@ public class ScreenManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) {
             BasicEgg egg = GetEggIfTouched();
             if(egg != null) {
-                eggsPanel.TouchEgg(egg, player.GetDamage());
+                eggsPanel.TouchEgg(egg, playerScript.GetDamage());
             }
         }
     }
