@@ -22,6 +22,7 @@ public class ScreenButtons : MonoBehaviour
 
     void BackToLevelsMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("LevelsMenu");
     }
 
