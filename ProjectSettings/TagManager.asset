@@ -44,12 +44,15 @@ TagManager:
   - name: Background
     uniqueID: 1981896927
     locked: 0
-  - name: UI
-    uniqueID: 1406806825
-    locked: 0
   - name: Egg
     uniqueID: 3787060067
     locked: 0
   - name: Floor
     uniqueID: 2336527935
+    locked: 0
+  - name: UI
+    uniqueID: 1406806825
+    locked: 0
+  - name: PauseMenu
+    uniqueID: 588546933
     locked: 0
