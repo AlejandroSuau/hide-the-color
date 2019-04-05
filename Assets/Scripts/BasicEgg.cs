@@ -17,7 +17,6 @@ public class BasicEgg : MonoBehaviour, IEgg
 
     public void Touch(GameColor color, int damage)
     {
-        Debug.Log("Touched {name: " + name + ", color: " + color + "}");
         if (this.color == color) {
             lifes -= damage;
             if (IsDeath())
