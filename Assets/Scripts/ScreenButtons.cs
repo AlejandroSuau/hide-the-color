@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScreenButtons : MonoBehaviour
 {
@@ -13,10 +14,15 @@ public class ScreenButtons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //restartLevelButton.onClick.AddListener();
+        restartLevelButton.onClick.AddListener(RestartLevel);
         pauseButton.onClick.AddListener(Pause);
         playButton.onClick.AddListener(Play);
-        //backToLevelsButton.onClick.AddListener();
+        backToLevelsButton.onClick.AddListener(BackToLevelsMenu);
+    }
+
+    void BackToLevelsMenu()
+    {
+        SceneManager.LoadScene("LevelsMenu");
     }
 
     void Play()
@@ -31,5 +37,11 @@ public class ScreenButtons : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+    }
+
+    void RestartLevel()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 }
