@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameObject changingBar;
+    private Transform changingBarTransform;
+    private Vector3 changingBarInitScale;
+
     public float timeToChangeColor = 1.5f;
-    private IEnumerator changingColorCoroutine;
-    
+    private float currentTime;
     private int damage = 1;
     private GameColor color;
     private SpriteRenderer spriteRenderer;
@@ -14,13 +17,26 @@ public class Player : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        changingColorCoroutine = ChangeColor(timeToChangeColor);
-        StartCoroutine(changingColorCoroutine);
+        changingBar.SetActive(true);
+        changingBarTransform = changingBar.GetComponent<Transform>();
+        changingBarInitScale = changingBarTransform.localScale;
     }
 
     void Start()
     {
         SetColor(ColorsManager.instance.GetRandomColor());
+    }
+
+    void Update()
+    {
+        if (currentTime >= timeToChangeColor) {
+            currentTime = 0;
+            SetColor(ColorsManager.instance.GetRandomColorDistinctTo(color));
+            RestoreBarWidth();
+        } else {
+            currentTime += Time.deltaTime;
+            DecrementBarWidth();
+        }
     }
 
     public void SetColor(GameColor color)
@@ -44,11 +60,15 @@ public class Player : MonoBehaviour
         return color;
     }
 
-    private IEnumerator ChangeColor(float waitTime)
+    void RestoreBarWidth()
     {
-        while(true) {
-            yield return new WaitForSeconds(waitTime);
-            SetColor(ColorsManager.instance.GetRandomColorDistinctTo(color));
-        }
+        changingBarTransform.localScale = changingBarInitScale;
+    }
+
+    void DecrementBarWidth()
+    {
+        Vector3 temp = changingBarTransform.localScale;
+        temp.x -= Time.deltaTime/timeToChangeColor;
+        changingBarTransform.localScale = temp;
     }
 }
