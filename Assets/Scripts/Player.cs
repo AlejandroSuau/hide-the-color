@@ -67,18 +67,17 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         lifes -= damage;
-        if (IsDeath())
+        if (IsDead())
             Death();
     }
 
-    bool IsDeath()
+    public bool IsDead()
     {
         return lifes <= 0;
     }
 
     public void Death()
     {
-        gameObject.SetActive(false);
         SceneManager.LoadScene("GameOver");
     }
 

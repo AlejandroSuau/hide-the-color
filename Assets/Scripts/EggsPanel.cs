@@ -19,6 +19,7 @@ public class EggsPanel : MonoBehaviour
         eggs = new BasicEgg[platforms.Length];
         destroyedEggs = 0;
         remainingEggs = 0;
+        UpdateEggsCounterText();
         SpawnEggs();
     }
 
@@ -74,5 +75,10 @@ public class EggsPanel : MonoBehaviour
     void UpdateEggsCounterText()
     {
         eggsCounter.text = destroyedEggs.ToString();
+    }
+
+    public int GetDestroyedEggs()
+    {
+        return destroyedEggs;
     }
 }

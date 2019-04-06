@@ -5,13 +5,18 @@ using UnityEngine;
 public class ScreenManager : MonoBehaviour
 {
     public GameObject playerGO;
+    public Canvas gameScreenUI;
     
+    private CountdownTimer countdownTimerScript;
     private Player playerScript;
-    private EggsPanel eggsPanel;
+    private EggsPanel eggsPanelScript;
 
     void Start()
     {
-        eggsPanel = GetComponent<EggsPanel>();
+        GamePreservedStats.instance.ResetStats();
+        
+        countdownTimerScript = gameScreenUI.GetComponent<CountdownTimer>();
+        eggsPanelScript = GetComponent<EggsPanel>();
         playerScript = playerGO.GetComponent<Player>();
     }
 
@@ -20,8 +25,15 @@ public class ScreenManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) {
             BasicEgg egg = GetEggIfTouched();
             if(egg != null) {
-                eggsPanel.TouchEgg(egg, playerScript);
+                eggsPanelScript.TouchEgg(egg, playerScript);
+
+                if (playerScript.IsDead())
+                    EndGame(false);
             }
+        }
+
+        if (countdownTimerScript.HasEnded()) {
+            EndGame(true);
         }
     }
 
@@ -37,5 +49,14 @@ public class ScreenManager : MonoBehaviour
             BasicEgg touchedEgg = (BasicEgg) hit.collider.gameObject.GetComponent(typeof(BasicEgg));
             return touchedEgg;
         }
+    }
+
+    void EndGame(bool success)
+    {
+        GamePreservedStats.instance.gameSuccess = success;
+        GamePreservedStats.instance.eggs = eggsPanelScript.GetDestroyedEggs();
+        
+        if (!success)
+            GamePreservedStats.instance.diedTime = countdownTimerScript.GetCurrentTime();
     }
 }

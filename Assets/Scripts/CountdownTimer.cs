@@ -40,7 +40,7 @@ public class CountdownTimer : MonoBehaviour
         textSeconds.text = (Mathf.Ceil(currentTime)).ToString();
     }
 
-    bool HasEnded()
+    public bool HasEnded()
     {
         return currentTime <= 0;
     }
@@ -48,5 +48,10 @@ public class CountdownTimer : MonoBehaviour
     void Reset()
     {
         currentTime = startingTime;
+    }
+
+    public float GetCurrentTime()
+    {
+        return currentTime;
     }
 }
