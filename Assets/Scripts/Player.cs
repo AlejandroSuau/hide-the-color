@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -67,18 +66,11 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         lifes -= damage;
-        if (IsDead())
-            Death();
     }
 
     public bool IsDead()
     {
         return lifes <= 0;
-    }
-
-    public void Death()
-    {
-        SceneManager.LoadScene("GameOver");
     }
 
     void RestoreBarWidth()

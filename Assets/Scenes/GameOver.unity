@@ -1311,8 +1311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed75a55372a418042909cd8d0e7a2a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverLogo: {fileID: 1263270233}
-  gameCompletedLogo: {fileID: 0}
+  gameOverLogo: {fileID: 1105786264}
+  gameCompletedLogo: {fileID: 1263270233}
   eggsDestroyedText: {fileID: 437954126}
   backToLevelsButton: {fileID: 1133776436}
   loadLevelButton: {fileID: 655314315}
