@@ -10,8 +10,11 @@ public class Player : MonoBehaviour
 
     public float timeToChangeColor = 1.5f;
     private float currentTime;
+
     private int damage = 1;
     private GameColor color;
+    private int lifes = 1;
+
     private SpriteRenderer spriteRenderer;
 
     void Awake()
@@ -58,6 +61,24 @@ public class Player : MonoBehaviour
     public GameColor GetColor()
     {
         return color;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        lifes -= damage;
+        if (IsDeath())
+            Death();
+    }
+
+    bool IsDeath()
+    {
+        return lifes <= 0;
+    }
+
+    public void Death()
+    {
+        gameObject.SetActive(false);
+        Time.timeScale = 0f;
     }
 
     void RestoreBarWidth()

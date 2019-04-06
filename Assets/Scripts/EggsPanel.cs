@@ -51,18 +51,23 @@ public class EggsPanel : MonoBehaviour
         return remainingEggs <= 0;
     }
 
-    public void TouchEgg(BasicEgg egg, GameColor color, int damage)
+    public void TouchEgg(BasicEgg egg, Player player)
     {
-        egg.Touch(color, damage);
-        if (egg.IsDeath()) {
-            destroyedEggs ++;
-            UpdateEggsCounterText();
+        if (egg.IsTheSameColorAs(player.GetColor())) {
+            egg.TakeDamage(player.GetDamage());
             
-            remainingEggs --;
-            if(IsEmpty()) {
-                CleanPanel();
-                SpawnEggs();
+            if (egg.IsDead()) {
+                destroyedEggs ++;
+                UpdateEggsCounterText();
+                
+                remainingEggs --;
+                if(IsEmpty()) {
+                    CleanPanel();
+                    SpawnEggs();
+                }
             }
+        } else {
+            player.TakeDamage(egg.GetDamage());
         }
     }
 

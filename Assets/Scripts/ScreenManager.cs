@@ -20,7 +20,7 @@ public class ScreenManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) {
             BasicEgg egg = GetEggIfTouched();
             if(egg != null) {
-                eggsPanel.TouchEgg(egg, playerScript.GetColor(), playerScript.GetDamage());
+                eggsPanel.TouchEgg(egg, playerScript);
             }
         }
     }
