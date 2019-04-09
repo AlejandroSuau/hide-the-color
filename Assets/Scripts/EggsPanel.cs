@@ -81,7 +81,8 @@ public class EggsPanel : MonoBehaviour
     public void AnimateEggsWithTheSameColorAs(GameColor color)
     {
         foreach(BasicEgg egg in eggs) {
-            egg.AnimateIfIsCorrectColor(color);
+            if (!egg.IsDead)
+                egg.AnimateIfIsCorrectColor(color);
         }
     }
 }
