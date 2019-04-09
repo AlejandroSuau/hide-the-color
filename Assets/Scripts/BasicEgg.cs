@@ -9,6 +9,7 @@ public class BasicEgg : MonoBehaviour
     private GameColor color;
     private int lifes = 1;
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
     
     public int Damage { get { return 0; } }
     public int Lifes { get { return lifes; } }
@@ -19,6 +20,7 @@ public class BasicEgg : MonoBehaviour
     public void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     public bool IsTheSameColorAs(GameColor color)
@@ -49,11 +51,25 @@ public class BasicEgg : MonoBehaviour
 
     void Death()
     {
+        animator.enabled = false;
         gameObject.SetActive(false);
+    }
+
+    public void AnimateIfIsCorrectColor(GameColor color)
+    {
+        if (IsTheSameColorAs(color))
+            AnimateCorrectColor();
+        else
+            AnimateStatic();
     }
 
     public void AnimateCorrectColor()
     {
-        GetComponent<Animator>().Play("CorrectColor", -1, 0.0f);
+        animator.Play("CorrectColor", -1, 0.0f);
+    }
+
+    public void AnimateStatic()
+    {
+        animator.Play("Static", -1, 0.0f);
     }
 }

@@ -12,6 +12,10 @@ public class EggsPanel : MonoBehaviour
     private int destroyedEggs;
     private int remainingEggs;
 
+    public int DestroyedEggs { get { return destroyedEggs; } }
+    public int RemainingEggs { get { return remainingEggs; } }
+    public bool IsEmpty { get { return remainingEggs <= 0; } }
+
     const float extraEggPositionY =  0.70f;
 
     void Start()
@@ -34,6 +38,8 @@ public class EggsPanel : MonoBehaviour
             newEgg.name =  i + "-" + BasicEgg.EGG_TYPE_NAME;
             newEgg.SetColor(ColorsManager.instance.GetRandomColor());
 
+            newEgg.AnimateIfIsCorrectColor(ScreenManager.instance.PlayerScript.Color);
+
             eggs[i] = newEgg;
             remainingEggs ++;
         }
@@ -47,11 +53,6 @@ public class EggsPanel : MonoBehaviour
         }
     }
 
-    public bool IsEmpty()
-    {
-        return remainingEggs <= 0;
-    }
-
     public void TouchEgg(BasicEgg egg, Player player)
     {
         if (egg.IsTheSameColorAs(player.Color)) {
@@ -62,7 +63,7 @@ public class EggsPanel : MonoBehaviour
                 UpdateEggsCounterText();
                 
                 remainingEggs --;
-                if(IsEmpty()) {
+                if(IsEmpty) {
                     CleanPanel();
                     SpawnEggs();
                 }
@@ -77,8 +78,11 @@ public class EggsPanel : MonoBehaviour
         eggsCounter.text = destroyedEggs.ToString();
     }
 
-    public int GetDestroyedEggs()
+    public void AnimateEggsWithTheSameColorAs(GameColor color)
     {
-        return destroyedEggs;
+        foreach(BasicEgg egg in eggs) {
+            egg.AnimateIfIsCorrectColor(color);
+            Debug.Log(color + " " + egg.Color);
+        }
     }
 }

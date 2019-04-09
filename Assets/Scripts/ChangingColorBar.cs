@@ -9,7 +9,6 @@ public class ChangingColorBar : MonoBehaviour
     void Awake()
     {
         initialScale = transform.localScale;
-        gameObject.SetActive(true);
     }
 
     public void DecrementBarWidth(float timeToChangeColor)

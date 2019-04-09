@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ScreenManager : MonoBehaviour
 {
+    public static ScreenManager instance;
+
     public GameObject playerGO;
     public Canvas gameScreenUI;
     
@@ -12,8 +14,19 @@ public class ScreenManager : MonoBehaviour
     private Player playerScript;
     private EggsPanel eggsPanelScript;
 
-    void Start()
+    public EggsPanel EggsPanelScript { get { return eggsPanelScript; } }
+    public Player PlayerScript { get { return playerScript; } }
+
+    void Awake()
     {
+        if (instance != null)
+        {
+            Debug.LogError("More than one ScreenManager in scene!");
+            return;
+        }
+
+        instance = this;
+        
         GamePreservedStats.instance.ResetStats();
         
         countdownTimerScript = gameScreenUI.GetComponent<CountdownTimer>();
@@ -55,7 +68,7 @@ public class ScreenManager : MonoBehaviour
     void EndGame(bool success)
     {
         GamePreservedStats.instance.gameSuccess = success;
-        GamePreservedStats.instance.eggs = eggsPanelScript.GetDestroyedEggs();
+        GamePreservedStats.instance.eggs = eggsPanelScript.DestroyedEggs;
         
         if (!success)
             GamePreservedStats.instance.diedTime = countdownTimerScript.GetCurrentTime();

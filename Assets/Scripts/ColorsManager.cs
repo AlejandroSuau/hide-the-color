@@ -21,8 +21,6 @@ public class ColorsManager : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
-        
-        //DontDestroyOnLoad(gameObject);
     }
 
     public GameColor GetRandomColor() 
