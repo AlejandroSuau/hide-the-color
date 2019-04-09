@@ -82,7 +82,6 @@ public class EggsPanel : MonoBehaviour
     {
         foreach(BasicEgg egg in eggs) {
             egg.AnimateIfIsCorrectColor(color);
-            Debug.Log(color + " " + egg.Color);
         }
     }
 }
