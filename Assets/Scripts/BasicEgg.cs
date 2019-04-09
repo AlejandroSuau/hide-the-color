@@ -61,4 +61,9 @@ public class BasicEgg : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    public void AnimateCorrectColor()
+    {
+        GetComponent<Animator>().Play("CorrectColor", -1, 0.0f);
+    }
 }
