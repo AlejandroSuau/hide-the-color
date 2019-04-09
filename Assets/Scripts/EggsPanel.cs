@@ -33,7 +33,7 @@ public class EggsPanel : MonoBehaviour
                 Resources.Load<BasicEgg>("Prefabs/BasicEgg"), eggPosition, Quaternion.identity);
             newEgg.name =  i + "-" + BasicEgg.EGG_TYPE_NAME;
             newEgg.SetColor(ColorsManager.instance.GetRandomColor());
-            
+
             eggs[i] = newEgg;
             remainingEggs ++;
         }
@@ -57,7 +57,7 @@ public class EggsPanel : MonoBehaviour
         if (egg.IsTheSameColorAs(player.Color)) {
             egg.TakeDamage(player.Damage);
             
-            if (egg.IsDead()) {
+            if (egg.IsDead) {
                 destroyedEggs ++;
                 UpdateEggsCounterText();
                 
@@ -68,7 +68,7 @@ public class EggsPanel : MonoBehaviour
                 }
             }
         } else {
-            player.TakeDamage(egg.GetDamage());
+            player.TakeDamage(1);
         }
     }
 
