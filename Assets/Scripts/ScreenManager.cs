@@ -28,7 +28,7 @@ public class ScreenManager : MonoBehaviour
             if(egg != null) {
                 eggsPanelScript.TouchEgg(egg, playerScript);
 
-                if (playerScript.IsDead())
+                if (playerScript.IsDead)
                     EndGame(false);
             }
         }

@@ -4,84 +4,58 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public GameObject changingBar;
-    private Transform changingBarTransform;
-    private Vector3 changingBarInitScale;
-
     public float timeToChangeColor = 1.5f;
     private float currentTime;
 
-    private int damage = 1;
+    private ChangingColorBar changingColorBar;
+
     private GameColor color;
     private int lifes = 1;
-
     private SpriteRenderer spriteRenderer;
+
+    public int Damage { get { return 1; } }
+    public int Lifes { get { return lifes; } }
+    public string SpriteName { get { return "Player-" + color; } }
+    public GameColor Color { get { return color; } }
+    public bool IsDead { get { return lifes <= 0; } }
 
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        changingBar.SetActive(true);
-        changingBarTransform = changingBar.GetComponent<Transform>();
-        changingBarInitScale = changingBarTransform.localScale;
+        changingColorBar = GetComponentInChildren<ChangingColorBar>();
     }
 
     void Start()
     {
-        SetColor(ColorsManager.instance.GetRandomColor());
+        ChangeColor();
     }
 
     void Update()
     {
         if (currentTime >= timeToChangeColor) {
             currentTime = 0;
-            SetColor(ColorsManager.instance.GetRandomColorDistinctTo(color));
-            RestoreBarWidth();
+            ChangeColor();
         } else {
             currentTime += Time.deltaTime;
-            DecrementBarWidth();
+            changingColorBar.DecrementBarWidth(timeToChangeColor);
         }
     }
 
-    public void SetColor(GameColor color)
+    public void ChangeColor()
     {
-        this.color = color;
-        spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/" + GetSpriteName());
+        GameColor newColor = ColorsManager.instance.GetRandomColorDistinctTo(color);
+        this.color = newColor;
+        UpdateSprite();
+        changingColorBar.RestoreBarWidth();
     }
 
-    string GetSpriteName()
+    void UpdateSprite()
     {
-        return "Player-" + color;
-    }
-
-    public int GetDamage()
-    {
-        return damage;
-    }
-
-    public GameColor GetColor()
-    {
-        return color;
+        spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/" + SpriteName);
     }
 
     public void TakeDamage(int damage)
     {
         lifes -= damage;
-    }
-
-    public bool IsDead()
-    {
-        return lifes <= 0;
-    }
-
-    void RestoreBarWidth()
-    {
-        changingBarTransform.localScale = changingBarInitScale;
-    }
-
-    void DecrementBarWidth()
-    {
-        Vector3 temp = changingBarTransform.localScale;
-        temp.x -= Time.deltaTime/timeToChangeColor;
-        changingBarTransform.localScale = temp;
     }
 }

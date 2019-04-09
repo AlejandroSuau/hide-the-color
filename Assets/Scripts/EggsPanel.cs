@@ -54,8 +54,8 @@ public class EggsPanel : MonoBehaviour
 
     public void TouchEgg(BasicEgg egg, Player player)
     {
-        if (egg.IsTheSameColorAs(player.GetColor())) {
-            egg.TakeDamage(player.GetDamage());
+        if (egg.IsTheSameColorAs(player.Color)) {
+            egg.TakeDamage(player.Damage);
             
             if (egg.IsDead()) {
                 destroyedEggs ++;
