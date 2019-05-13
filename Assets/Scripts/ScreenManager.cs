@@ -34,6 +34,8 @@ public class ScreenManager : MonoBehaviour
         eggsPanelScript = GetComponent<EggsPanel>();
         playerScript = playerGO.GetComponent<Player>();
         screenButtonsScript = GetComponentInChildren<ScreenButtons>();
+
+        screenButtonsScript.Pause();
     }
 
     void Update()

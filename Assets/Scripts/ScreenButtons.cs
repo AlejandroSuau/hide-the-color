@@ -33,7 +33,7 @@ public class ScreenButtons : MonoBehaviour
         GameIsPaused = false;
     }
 
-    void Pause()
+    public void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
