@@ -13,6 +13,7 @@ public class ScreenManager : MonoBehaviour
     private CountdownTimer countdownTimerScript;
     private Player playerScript;
     private EggsPanel eggsPanelScript;
+    private ScreenButtons screenButtonsScript; // First is paused menu
 
     public EggsPanel EggsPanelScript { get { return eggsPanelScript; } }
     public Player PlayerScript { get { return playerScript; } }
@@ -32,10 +33,14 @@ public class ScreenManager : MonoBehaviour
         countdownTimerScript = gameScreenUI.GetComponent<CountdownTimer>();
         eggsPanelScript = GetComponent<EggsPanel>();
         playerScript = playerGO.GetComponent<Player>();
+        screenButtonsScript = GetComponentInChildren<ScreenButtons>();
     }
 
     void Update()
     {
+        // Do nothing if it's paused.
+        if (screenButtonsScript.getGameIsPaused()) return;
+
         if (Input.GetMouseButtonDown(0)) {
             BasicEgg egg = GetEggIfTouched();
             if(egg != null) {

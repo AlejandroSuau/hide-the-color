@@ -45,4 +45,9 @@ public class ScreenButtons : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
+
+    public bool getGameIsPaused()
+    {
+        return GameIsPaused;
+    }
 }

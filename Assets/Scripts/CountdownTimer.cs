@@ -54,4 +54,9 @@ public class CountdownTimer : MonoBehaviour
     {
         return currentTime;
     }
+
+    public bool getIsPaused()
+    {
+        return this.isPaused;
+    }
 }
