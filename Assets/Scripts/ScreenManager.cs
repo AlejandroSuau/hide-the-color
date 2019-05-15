@@ -32,7 +32,12 @@ public class ScreenManager : MonoBehaviour
         
         countdownTimerScript = gameScreenUI.GetComponent<CountdownTimer>();
         eggsPanelScript = GetComponent<EggsPanel>();
+        
+        // Initialize the player's color always to a correct one.
         playerScript = playerGO.GetComponent<Player>();
+        GameColor firstEggColor = eggsPanelScript.GetEggs()[0].Color;
+        playerScript.ChangeToADesiredColor(firstEggColor);
+
         screenButtonsScript = GetComponentInChildren<ScreenButtons>();
 
         screenButtonsScript.Pause();

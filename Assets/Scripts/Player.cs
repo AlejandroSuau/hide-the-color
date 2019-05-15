@@ -23,14 +23,13 @@ public class Player : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         changingColorBar = GetComponentInChildren<ChangingColorBar>();
-        ChangeColor();
     }
 
     void Update()
     {
         if (currentTime >= timeToChangeColor) {
             currentTime = 0;
-            ChangeColor();
+            ChangeToRandomColor();
             ScreenManager.instance.EggsPanelScript.AnimateEggsWithTheSameColorAs(color);
             changingColorBar.RestoreBarWidth();
         } else {
@@ -39,11 +38,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ChangeColor()
+    public void ChangeToADesiredColor(GameColor newColor)
     {
-        GameColor newColor = ColorsManager.instance.GetRandomColorDistinctTo(color);
         this.color = newColor;
         UpdateSprite();
+    }
+
+    public void ChangeToRandomColor()
+    {
+        GameColor newColor = ColorsManager.instance.GetRandomColorDistinctTo(color);
+        ChangeToADesiredColor(newColor);
     }
 
     void UpdateSprite()

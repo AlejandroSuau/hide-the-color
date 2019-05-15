@@ -18,7 +18,7 @@ public class EggsPanel : MonoBehaviour
 
     const float extraEggPositionY =  0.70f;
 
-    void Start()
+    void Awake()
     {
         eggs = new BasicEgg[platforms.Length];
         destroyedEggs = 0;
@@ -37,8 +37,6 @@ public class EggsPanel : MonoBehaviour
                 Resources.Load<BasicEgg>("Prefabs/BasicEgg"), eggPosition, Quaternion.identity);
             newEgg.name =  i + "-" + BasicEgg.EGG_TYPE_NAME;
             newEgg.SetColor(ColorsManager.instance.GetRandomColor());
-
-            newEgg.AnimateIfIsCorrectColor(ScreenManager.instance.PlayerScript.Color);
 
             eggs[i] = newEgg;
             remainingEggs ++;
