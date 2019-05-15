@@ -85,4 +85,9 @@ public class EggsPanel : MonoBehaviour
                 egg.AnimateIfIsCorrectColor(color);
         }
     }
+
+    public BasicEgg[] getEggs()
+    {
+        return this.eggs;
+    }
 }

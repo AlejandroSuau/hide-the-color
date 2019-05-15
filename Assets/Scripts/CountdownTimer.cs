@@ -15,8 +15,12 @@ public class CountdownTimer : MonoBehaviour
     private bool isPaused;
     private float secondElapsing;
 
+    private bool wasInDangerTime;
+    private const int DANGER_TIME = 10;
+
     void Start()
     {
+        wasInDangerTime = false;
         currentTime = startingTime;
         secondElapsing = 0;
         UpdateTextTime();
@@ -29,10 +33,35 @@ public class CountdownTimer : MonoBehaviour
             
             secondElapsing += Time.deltaTime;
             if (secondElapsing >= 1 || currentTime <= 0) {
+                SwapFontColorIfNeeds(currentTime);
                 UpdateTextTime();
                 secondElapsing = 0;
             }
         }
+    }
+
+    void SwapFontColorIfNeeds(float secondElapsing)
+    {        
+        if (secondElapsing > DANGER_TIME && wasInDangerTime) {
+            wasInDangerTime = false;
+            SetNormalColor();
+        } else if (secondElapsing <= DANGER_TIME && !wasInDangerTime) {
+            wasInDangerTime = true;
+            SetDangerColor();
+        }
+    }
+
+    void SetNormalColor()
+    {
+        Debug.Log("yeag vavt");
+        textTime.color = Color.white;
+        textSeconds.color = Color.white;
+    }
+
+    void SetDangerColor()
+    {
+        textTime.color = Color.red;
+        textSeconds.color = Color.red;
     }
 
     void UpdateTextTime()
