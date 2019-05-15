@@ -86,7 +86,7 @@ public class EggsPanel : MonoBehaviour
         }
     }
 
-    public BasicEgg[] getEggs()
+    public BasicEgg[] GetEggs()
     {
         return this.eggs;
     }

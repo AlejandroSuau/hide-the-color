@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 44314138}
   m_Layer: 0
-  m_Name: FingerHelper01
+  m_Name: FingerHelper2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,7 +141,7 @@ Transform:
   m_Children:
   - {fileID: 891642655}
   m_Father: {fileID: 939190919}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &47271155 stripped
 MonoBehaviour:
@@ -186,7 +186,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133395466}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -141, y: 322, z: 0}
+  m_LocalPosition: {x: -146, y: 320.4, z: 0}
   m_LocalScale: {x: 70, y: 70, z: 70}
   m_Children: []
   m_Father: {fileID: 939190919}
@@ -250,7 +250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 389514879}
   m_Layer: 0
-  m_Name: FingerHelper00
+  m_Name: FingerHelper1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,7 +269,7 @@ Transform:
   m_Children:
   - {fileID: 859800437}
   m_Father: {fileID: 939190919}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &448830566 stripped
 MonoBehaviour:
@@ -560,6 +560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 859800437}
   - component: {fileID: 859800438}
+  - component: {fileID: 859800439}
   m_Layer: 0
   m_Name: hand-indicator-00
   m_TagString: Untagged
@@ -629,6 +630,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &859800439
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859800436}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5697ac78c9ee0a446bd1f7ccf64e500a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &891642654
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,6 +659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 891642655}
   - component: {fileID: 891642656}
+  - component: {fileID: 891642657}
   m_Layer: 0
   m_Name: hand-indicator-00
   m_TagString: Untagged
@@ -708,6 +729,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &891642657
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891642654}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5697ac78c9ee0a446bd1f7ccf64e500a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &925535073
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,9 +881,9 @@ RectTransform:
   - {fileID: 662744737}
   - {fileID: 1915382035}
   - {fileID: 2141635514}
+  - {fileID: 1617577820}
   - {fileID: 389514879}
   - {fileID: 44314138}
-  - {fileID: 1617577820}
   m_Father: {fileID: 1375297373}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -902,9 +942,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   helperFingers:
+  - {fileID: 1617577819}
   - {fileID: 389514878}
   - {fileID: 44314137}
-  - {fileID: 1617577819}
 --- !u!114 &1121028047 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7530634420398623497, guid: d40eaaac56cb05448a76d28ef1378246,
@@ -1104,6 +1144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1484256607}
   - component: {fileID: 1484256608}
+  - component: {fileID: 1484256609}
   m_Layer: 0
   m_Name: hand-indicator-00
   m_TagString: Untagged
@@ -1173,6 +1214,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1484256609
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484256606}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5697ac78c9ee0a446bd1f7ccf64e500a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1599793560 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7077960186549945352, guid: 26a0dfd1c6256004094db9e4763ed88b,
@@ -1189,7 +1249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1617577820}
   m_Layer: 0
-  m_Name: FingerHelper02
+  m_Name: FingerHelper0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1208,7 +1268,7 @@ Transform:
   m_Children:
   - {fileID: 1484256607}
   m_Father: {fileID: 939190919}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1913128451
 PrefabInstance:
