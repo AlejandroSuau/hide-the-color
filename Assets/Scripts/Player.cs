@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
         if (currentTime >= timeToChangeColor) {
             currentTime = 0;
             ChangeToRandomColor();
-            ScreenManager.instance.EggsPanelScript.AnimateEggsWithTheSameColorAs(color);
+            //ScreenManager.instance.EggsPanelScript.AnimateEggsWithTheSameColorAs(color);
             changingColorBar.RestoreBarWidth();
         } else {
             currentTime += Time.deltaTime;

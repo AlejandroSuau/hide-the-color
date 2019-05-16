@@ -53,7 +53,6 @@ public class CountdownTimer : MonoBehaviour
 
     void SetNormalColor()
     {
-        Debug.Log("yeag vavt");
         textTime.color = Color.white;
         textSeconds.color = Color.white;
     }

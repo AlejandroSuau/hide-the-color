@@ -32,7 +32,7 @@ public class ScreenManager : MonoBehaviour
         
         countdownTimerScript = gameScreenUI.GetComponent<CountdownTimer>();
         eggsPanelScript = GetComponent<EggsPanel>();
-        
+
         // Initialize the player's color always to a correct one.
         playerScript = playerGO.GetComponent<Player>();
         GameColor firstEggColor = eggsPanelScript.GetEggs()[0].Color;
@@ -45,7 +45,7 @@ public class ScreenManager : MonoBehaviour
 
     void Update()
     {
-        // Do nothing if it's paused.
+        // Do not allow to click if the game is paused.
         if (screenButtonsScript.getGameIsPaused()) return;
 
         if (Input.GetMouseButtonDown(0)) {

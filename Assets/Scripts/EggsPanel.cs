@@ -16,22 +16,29 @@ public class EggsPanel : MonoBehaviour
     public int RemainingEggs { get { return remainingEggs; } }
     public bool IsEmpty { get { return remainingEggs <= 0; } }
 
-    const float extraEggPositionY =  0.70f;
+    const float WAITING_TIME_BEFORE_SPAWN_PANEL = 0.5f; 
+    const float EXTRA_EGG_POSITION_Y =  0.70f;
 
     void Awake()
     {
         eggs = new BasicEgg[platforms.Length];
         destroyedEggs = 0;
         remainingEggs = 0;
+
         UpdateEggsCounterText();
         SpawnEggs();
+    }
+
+    void Start()
+    {
+        AnimateEggsWithTheSameColorAs( ScreenManager.instance.PlayerScript.Color);
     }
 
     public void SpawnEggs()
     {
         for(int i = 0; i < eggs.Length; i++) {
             Vector3 eggPosition = platforms[i].GetComponent<Transform>().position;
-            eggPosition.y += extraEggPositionY;
+            eggPosition.y += EXTRA_EGG_POSITION_Y;
 
             BasicEgg newEgg = (BasicEgg) Instantiate(
                 Resources.Load<BasicEgg>("Prefabs/BasicEgg"), eggPosition, Quaternion.identity);
@@ -63,12 +70,19 @@ public class EggsPanel : MonoBehaviour
                 remainingEggs --;
                 if(IsEmpty) {
                     CleanPanel();
-                    SpawnEggs();
+                    WaitToSpawnNextPanel();
+                    Invoke("SpawnEggs", WAITING_TIME_BEFORE_SPAWN_PANEL);
+                    //AnimateEggsWithTheSameColorAs( ScreenManager.instance.PlayerScript.Color);
                 }
             }
         } else {
             player.TakeDamage(1);
         }
+    }
+
+    IEnumerator WaitToSpawnNextPanel()
+    {
+        yield return new WaitForSeconds(WAITING_TIME_BEFORE_SPAWN_PANEL);
     }
 
     void UpdateEggsCounterText()

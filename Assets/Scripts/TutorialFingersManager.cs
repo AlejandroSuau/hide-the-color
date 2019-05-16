@@ -19,7 +19,8 @@ public class TutorialFingersManager : MonoBehaviour
         int i = 0;
         foreach(BasicEgg egg in ScreenManager.instance.EggsPanelScript.GetEggs()) {
             bool active;
-            if (!egg.IsDead && egg.IsTheSameColorAs(ScreenManager.instance.PlayerScript.Color)) {
+            if (egg != null && !egg.IsDead 
+                && egg.IsTheSameColorAs(ScreenManager.instance.PlayerScript.Color)) {
                 active= true;
             } else {
                 active = false;
