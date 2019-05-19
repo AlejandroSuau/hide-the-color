@@ -13,7 +13,7 @@ public class BasicEgg : MonoBehaviour
     
     public int Damage { get { return 0; } }
     public int Lifes { get { return lifes; } }
-    public string SpriteName { get { return BasicEgg.EGG_TYPE_NAME + "-" + color;; } }
+    public string SpriteName { get { return BasicEgg.EGG_TYPE_NAME + "-" + color; } }
     public GameColor Color { get { return color; } }
     public bool IsDead { get { return lifes <= 0; } }
 
@@ -25,10 +25,7 @@ public class BasicEgg : MonoBehaviour
 
     public bool IsTheSameColorAs(GameColor color)
     {
-        if (this.color == color) 
-            return true;
-        else 
-            return false;
+        return (this.color == color);
     }
 
     public void SetColor(GameColor color)
