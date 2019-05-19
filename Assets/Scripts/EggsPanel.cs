@@ -16,7 +16,7 @@ public class EggsPanel : MonoBehaviour
     public int RemainingEggs { get { return remainingEggs; } }
     public bool IsEmpty { get { return remainingEggs <= 0; } }
 
-    const float WAITING_TIME_BEFORE_SPAWN_PANEL = 0.25f; 
+    const float WAITING_TIME_BEFORE_SPAWN_PANEL = 0.30f; 
     const float EXTRA_EGG_POSITION_Y =  0.70f;
 
     void Awake()
@@ -53,6 +53,8 @@ public class EggsPanel : MonoBehaviour
 
     public void TouchEgg(BasicEgg egg, Player player)
     {
+        if (egg.IsDead) return;
+
         if (egg.IsTheSameColorAs(player.Color)) {
             egg.TakeDamage(player.Damage);
             

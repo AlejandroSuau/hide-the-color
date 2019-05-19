@@ -50,10 +50,11 @@ public class BasicEgg : MonoBehaviour
     {
         //animator.SetBool("isDead", true);
         //animator.Play("Dead", -1, 0.0f);
+        spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/Destroying-Egg-Animation-3");
         animator.Play("Dead", 0, 0.0f);
         //animator.SetTrigger("Die");
-        /* animator.enabled = false;
-        gameObject.SetActive(false);*/
+        /* animator.enabled = false;*/
+        //gameObject.SetActive(false);
     }
 
     public void AnimateIfIsCorrectColor(GameColor color)
