@@ -48,8 +48,12 @@ public class BasicEgg : MonoBehaviour
 
     void Death()
     {
-        animator.enabled = false;
-        gameObject.SetActive(false);
+        //animator.SetBool("isDead", true);
+        //animator.Play("Dead", -1, 0.0f);
+        animator.Play("Dead", 0, 0.0f);
+        //animator.SetTrigger("Die");
+        /* animator.enabled = false;
+        gameObject.SetActive(false);*/
     }
 
     public void AnimateIfIsCorrectColor(GameColor color)
