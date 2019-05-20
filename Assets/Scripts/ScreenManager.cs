@@ -46,20 +46,21 @@ public class ScreenManager : MonoBehaviour
     void Update()
     {
         // Do not allow to click if the game is paused.
-        if (screenButtonsScript.getGameIsPaused()) return;
+        if (screenButtonsScript.getGameIsPaused() || playerScript.IsDead) return;
 
         if (Input.GetMouseButtonDown(0)) {
             BasicEgg egg = GetEggIfTouched();
             if(egg != null) {
                 eggsPanelScript.TouchEgg(egg, playerScript);
 
-                if (playerScript.IsDead)
-                    EndGame(false);
+                if (playerScript.IsDead) {
+                    EndGame();
+                }
             }
         }
 
         if (countdownTimerScript.HasEnded()) {
-            EndGame(true);
+            EndGame();
         }
     }
 
@@ -77,14 +78,19 @@ public class ScreenManager : MonoBehaviour
         }
     }
 
-    void EndGame(bool success)
+    void EndGame()
     {
-        GamePreservedStats.instance.gameSuccess = success;
+        GamePreservedStats.instance.gameSuccess = !playerScript.IsDead;
         GamePreservedStats.instance.eggs = eggsPanelScript.DestroyedEggs;
         
-        if (!success)
+        if (playerScript.IsDead)
             GamePreservedStats.instance.diedTime = countdownTimerScript.GetCurrentTime();
 
+        Invoke("LoadGameOverScene", 0.5f);
+    }
+
+    void LoadGameOverScene()
+    {
         SceneManager.LoadScene("GameOver");
     }
 }

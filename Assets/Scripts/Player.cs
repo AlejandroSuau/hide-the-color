@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     public float timeToChangeColor = 1.5f;
     private float currentTime;
 
+    private Animator lifeAnimator;
+
     private ChangingColorBar changingColorBar;
 
     private GameColor color;
@@ -23,6 +25,7 @@ public class Player : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         changingColorBar = GetComponentInChildren<ChangingColorBar>();
+        lifeAnimator = this.gameObject.transform.GetChild(1).gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -58,5 +61,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         lifes -= damage;
+        if (IsDead)
+            lifeAnimator.Play("LosingLife", 0, 0.0f);
     }
 }
