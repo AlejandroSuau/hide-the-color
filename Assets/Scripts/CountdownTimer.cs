@@ -38,7 +38,6 @@ public class CountdownTimer : MonoBehaviour
                 secondElapsing = 0;
             }
         }
-
     }
 
     void SwapFontColorIfNeeds(float secondElapsing)

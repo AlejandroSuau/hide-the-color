@@ -10,6 +10,8 @@ public class ScreenManager : MonoBehaviour
     public GameObject playerGO;
     public Canvas gameScreenUI;
     
+    private float initialThreeCountdownSeconds = 3f;
+
     private CountdownTimer countdownTimerScript;
     private Player playerScript;
     private EggsPanel eggsPanelScript;
@@ -39,12 +41,16 @@ public class ScreenManager : MonoBehaviour
         playerScript.ChangeToADesiredColor(firstEggColor);
 
         screenButtonsScript = GetComponentInChildren<ScreenButtons>();
-
-        screenButtonsScript.Pause();
     }
 
     void Update()
     {
+        // 3 seconds initial countdown 
+        if (initialThreeCountdownSeconds > 0) {
+            initialThreeCountdownSeconds -= Time.deltaTime;
+            return;
+        }
+
         // Do not allow to click if the game is paused.
         if (screenButtonsScript.getGameIsPaused() || playerScript.IsDead) return;
 
@@ -92,7 +98,7 @@ public class ScreenManager : MonoBehaviour
         if (playerScript.IsDead)
             GamePreservedStats.instance.diedTime = countdownTimerScript.GetCurrentTime();
 
-        Invoke("LoadGameOverScene", 0.5f);
+        Invoke("LoadGameOverScene", 1f);
     }
 
     void LoadGameOverScene()
