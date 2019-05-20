@@ -26,8 +26,8 @@ public class CountdownTimer : MonoBehaviour
         UpdateTextTime();
     }
 
-    void Update()
-    {
+    public void UpdateTimerBehaviour()
+    {       
         if (!HasEnded() && !isPaused) {
             currentTime -= Time.deltaTime;
             
@@ -38,6 +38,7 @@ public class CountdownTimer : MonoBehaviour
                 secondElapsing = 0;
             }
         }
+
     }
 
     void SwapFontColorIfNeeds(float secondElapsing)

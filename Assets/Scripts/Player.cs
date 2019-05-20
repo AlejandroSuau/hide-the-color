@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
         lifeAnimator = this.gameObject.transform.GetChild(1).gameObject.GetComponent<Animator>();
     }
 
-    void Update()
+    public void UpdatePlayerBehaviour()
     {
         if (currentTime >= timeToChangeColor) {
             currentTime = 0;

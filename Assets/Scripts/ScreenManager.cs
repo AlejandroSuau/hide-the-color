@@ -48,6 +48,12 @@ public class ScreenManager : MonoBehaviour
         // Do not allow to click if the game is paused.
         if (screenButtonsScript.getGameIsPaused() || playerScript.IsDead) return;
 
+        // Control Time updates
+        countdownTimerScript.UpdateTimerBehaviour();
+
+        // Controls player updates
+        playerScript.UpdatePlayerBehaviour();
+
         if (Input.GetMouseButtonDown(0)) {
             BasicEgg egg = GetEggIfTouched();
             if(egg != null) {
