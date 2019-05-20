@@ -6,6 +6,10 @@ public class BasicEgg : MonoBehaviour
 {
     public const string EGG_TYPE_NAME = "Basic";
     
+    public AudioClip audioDeath;
+
+    AudioSource audioSource;
+
     private GameColor color;
     private int lifes = 1;
     private SpriteRenderer spriteRenderer;
@@ -21,6 +25,7 @@ public class BasicEgg : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public bool IsTheSameColorAs(GameColor color)
@@ -48,13 +53,9 @@ public class BasicEgg : MonoBehaviour
 
     void Death()
     {
-        //animator.SetBool("isDead", true);
-        //animator.Play("Dead", -1, 0.0f);
+        audioSource.PlayOneShot(audioDeath, 0.5f);
         spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/Destroying-Egg-Animation-3");
         animator.Play("Dead", 0, 0.0f);
-        //animator.SetTrigger("Die");
-        /* animator.enabled = false;*/
-        //gameObject.SetActive(false);
     }
 
     public void AnimateIfIsCorrectColor(GameColor color)
