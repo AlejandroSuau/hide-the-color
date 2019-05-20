@@ -41,6 +41,7 @@ public class ScreenManager : MonoBehaviour
         playerScript.ChangeToADesiredColor(firstEggColor);
 
         screenButtonsScript = GetComponentInChildren<ScreenButtons>();
+        screenButtonsScript.enabled = false;
     }
 
     void Update()
@@ -49,6 +50,8 @@ public class ScreenManager : MonoBehaviour
         if (initialThreeCountdownSeconds > 0) {
             initialThreeCountdownSeconds -= Time.deltaTime;
             return;
+        } else {
+            screenButtonsScript.enabled = true;
         }
 
         // Do not allow to click if the game is paused.
