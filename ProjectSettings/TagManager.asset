@@ -56,3 +56,9 @@ TagManager:
   - name: PauseMenu
     uniqueID: 588546933
     locked: 0
+  - name: StartingCountdownBackground
+    uniqueID: 1958643137
+    locked: 0
+  - name: StartingCountdownNumbers
+    uniqueID: 1745920701
+    locked: 0
