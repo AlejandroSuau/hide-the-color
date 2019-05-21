@@ -8,6 +8,9 @@ public class EggsPanel : MonoBehaviour
     public Text eggsCounter;
     public GameObject[] platforms;
     
+    AudioSource audioSource;
+    public AudioClip audioPanelCleanned;
+
     private BasicEgg[] eggs;
     private int destroyedEggs;
     private int remainingEggs;
@@ -24,6 +27,8 @@ public class EggsPanel : MonoBehaviour
         eggs = new BasicEgg[platforms.Length];
         destroyedEggs = 0;
         remainingEggs = 0;
+
+        audioSource = GetComponent<AudioSource>();
 
         UpdateEggsCounterText();
         SpawnEggs();
@@ -64,6 +69,7 @@ public class EggsPanel : MonoBehaviour
                 
                 remainingEggs --;
                 if(IsEmpty) {
+                    audioSource.PlayOneShot(audioPanelCleanned, 0.5f);
                     Invoke("SpawnEggs", WAITING_TIME_BEFORE_SPAWN_PANEL);
                     //AnimateEggsWithTheSameColorAs( ScreenManager.instance.PlayerScript.Color);
                 }
