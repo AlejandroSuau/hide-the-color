@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StartingCountdownBehaviour : MonoBehaviour
 {
+    public Canvas backgroundCanvas;
     public GameObject[] numbers;
 
     public void Start()
@@ -11,6 +12,7 @@ public class StartingCountdownBehaviour : MonoBehaviour
         Invoke("PlayNumberThreeAnimation", 0.0f);
         Invoke("PlayNumberTwoAnimation", 1.0f);
         Invoke("PlayNumberOneAnimation", 2.0f);
+        Invoke("DisableStartingCountdown", 3.0f);
     }
 
     void PlayNumberThreeAnimation()
@@ -29,5 +31,10 @@ public class StartingCountdownBehaviour : MonoBehaviour
     {
         numbers[0].SetActive(true);
         numbers[0].GetComponent<Animator>().Play("InitialCountdownReduction", 0, 0.0f);
+    }
+
+    void DisableStartingCountdown()
+    {
+        Destroy(gameObject);
     }
 }
