@@ -66,8 +66,13 @@ public class Player : MonoBehaviour
     {
         lifes -= damage;
         if (IsDead) {
-            audioSource.PlayOneShot(audioDeath, 0.5f);
-            lifeAnimator.Play("LosingLife", 0, 0.0f);
+            Death();
         }
+    }
+
+    public void Death()
+    {
+        audioSource.PlayOneShot(audioDeath, 0.5f);
+        lifeAnimator.Play("LosingLife", 0, 0.0f);
     }
 }

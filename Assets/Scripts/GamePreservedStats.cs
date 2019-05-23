@@ -9,6 +9,7 @@ public class GamePreservedStats : MonoBehaviour
     public bool gameSuccess;
     public float diedTime;
     public int eggs;
+    public int medals;
 
     // Start is called before the first frame update
     void Awake()
@@ -26,5 +27,6 @@ public class GamePreservedStats : MonoBehaviour
         gameSuccess = false;
         eggs = 0;
         diedTime = -1f;
+        medals = 0;
     }
 }

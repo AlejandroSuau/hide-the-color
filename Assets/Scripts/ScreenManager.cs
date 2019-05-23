@@ -5,15 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class ScreenManager : MonoBehaviour
 {
+    private bool didGameFinished;
+
     public static ScreenManager instance;
 
     public GameObject playerGO;
+    public GameObject medalsGO;
     public Canvas gameScreenUI;
     
     private float initialThreeCountdownSeconds = 3f;
 
     private CountdownTimer countdownTimerScript;
     private Player playerScript;
+    private MedalsBehaviour medalsScript;
     private EggsPanel eggsPanelScript;
     private ScreenButtons screenButtonsScript; // First is paused menu
 
@@ -22,6 +26,8 @@ public class ScreenManager : MonoBehaviour
 
     void Awake()
     {
+        didGameFinished = false;
+
         if (instance != null)
         {
             Debug.LogError("More than one ScreenManager in scene!");
@@ -40,6 +46,8 @@ public class ScreenManager : MonoBehaviour
         GameColor firstEggColor = eggsPanelScript.GetEggs()[0].Color;
         playerScript.ChangeToADesiredColor(firstEggColor);
 
+        medalsScript = medalsGO.GetComponent<MedalsBehaviour>();
+
         screenButtonsScript = GetComponentInChildren<ScreenButtons>();
         screenButtonsScript.enabled = false;
     }
@@ -55,7 +63,7 @@ public class ScreenManager : MonoBehaviour
         }
 
         // Do not allow to click if the game is paused.
-        if (screenButtonsScript.getGameIsPaused() || playerScript.IsDead) return;
+        if (didGameFinished || screenButtonsScript.getGameIsPaused() || playerScript.IsDead) return;
 
         // Control Time updates
         countdownTimerScript.UpdateTimerBehaviour();
@@ -68,13 +76,21 @@ public class ScreenManager : MonoBehaviour
             if(egg != null) {
                 eggsPanelScript.TouchEgg(egg, playerScript);
 
+                // Evaluate if those number of eggs gives a new medal
+                medalsScript.DoesItObtainsANewMedalWithThis(eggsPanelScript.DestroyedEggs);
+
                 if (playerScript.IsDead) {
                     EndGame();
                 }
             }
         }
 
-        if (countdownTimerScript.HasEnded()) {
+        if (countdownTimerScript.HasEnded() && !didGameFinished) {
+            didGameFinished = true;
+
+            if (medalsScript.ObtainedMedals == 0)
+                playerScript.Death();
+
             EndGame();
         }
     }
@@ -95,13 +111,14 @@ public class ScreenManager : MonoBehaviour
 
     void EndGame()
     {
-        GamePreservedStats.instance.gameSuccess = !playerScript.IsDead;
+        GamePreservedStats.instance.gameSuccess = (!playerScript.IsDead && medalsScript.ObtainedMedals > 0);
         GamePreservedStats.instance.eggs = eggsPanelScript.DestroyedEggs;
+        GamePreservedStats.instance.medals = medalsScript.ObtainedMedals;
         
         if (playerScript.IsDead)
             GamePreservedStats.instance.diedTime = countdownTimerScript.GetCurrentTime();
 
-        Invoke("LoadGameOverScene", 1f);
+        Invoke("LoadGameOverScene", 2f);
     }
 
     void LoadGameOverScene()
