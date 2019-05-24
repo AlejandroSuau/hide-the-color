@@ -18,6 +18,10 @@ public class Player : MonoBehaviour
     private GameColor color;
     private int lifes = 1;
     private SpriteRenderer spriteRenderer;
+    private EggsPanel eggsPanelScript;
+
+    const int CONSECUTIVE_ERROR_COLORS = 1;
+    int stackedIncorrectColors;
 
     public int Damage { get { return 1; } }
     public int Lifes { get { return lifes; } }
@@ -27,6 +31,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
+        stackedIncorrectColors = 0;
         spriteRenderer = GetComponent<SpriteRenderer>();
         changingColorBar = GetComponentInChildren<ChangingColorBar>();
         lifeAnimator = this.gameObject.transform.GetChild(1).gameObject.GetComponent<Animator>();
@@ -55,6 +60,21 @@ public class Player : MonoBehaviour
     public void ChangeToRandomColor()
     {
         GameColor newColor = ColorsManager.instance.GetRandomColorDistinctTo(color);
+        if (!eggsPanelScript.DoesExistsInEggsThis(newColor)) 
+        {
+            if (stackedIncorrectColors == CONSECUTIVE_ERROR_COLORS)
+            {
+                stackedIncorrectColors = 0;
+                newColor = eggsPanelScript.ObtainFirstCorrectColor();
+            } else 
+            {
+                stackedIncorrectColors ++;
+            }
+        } else 
+        {
+            stackedIncorrectColors = 0;
+        }
+
         ChangeToADesiredColor(newColor);
     }
 
@@ -80,5 +100,10 @@ public class Player : MonoBehaviour
     public void Win()
     {
         audioSource.PlayOneShot(audioWin, 1f);
+    }
+
+    public void SetEggsPanelScript(EggsPanel epScript)
+    {
+        this.eggsPanelScript = epScript;
     }
 }

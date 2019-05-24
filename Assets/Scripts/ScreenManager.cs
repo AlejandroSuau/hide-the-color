@@ -59,6 +59,7 @@ public class ScreenManager : MonoBehaviour
         playerScript = playerGO.GetComponent<Player>();
         GameColor firstEggColor = eggsPanelScript.GetEggs()[0].Color;
         playerScript.ChangeToADesiredColor(firstEggColor);
+        playerScript.SetEggsPanelScript(eggsPanelScript);
 
         medalsScript = medalsGO.GetComponent<MedalsBehaviour>();
 

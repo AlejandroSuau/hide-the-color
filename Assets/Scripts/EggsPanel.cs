@@ -79,6 +79,26 @@ public class EggsPanel : MonoBehaviour
         }
     }
 
+    public GameColor ObtainFirstCorrectColor()
+    {
+        foreach(BasicEgg egg in eggs) {
+            if (!egg.IsDead)
+                return egg.Color;
+        }
+        
+        return GameColor.Green;
+    }
+
+    public bool DoesExistsInEggsThis(GameColor color)
+    {
+        foreach(BasicEgg egg in eggs) {
+            if (!egg.IsDead && egg.IsTheSameColorAs(color))
+                return true;
+        }
+
+        return false;
+    }
+
     void UpdateEggsCounterText()
     {
         eggsCounter.text = destroyedEggs.ToString();
