@@ -14,6 +14,7 @@ public class ScreenButtons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameIsPaused = false;
         restartLevelButton.onClick.AddListener(RestartLevel);
         pauseButton.onClick.AddListener(Pause);
         playButton.onClick.AddListener(Play);

@@ -136,6 +136,9 @@ public class ScreenManager : MonoBehaviour
         GamePreservedStats.instance.eggs = eggsPanelScript.DestroyedEggs;
         GamePreservedStats.instance.medals = medalsScript.ObtainedMedals;
         
+        int sceneId = int.Parse((SceneManager.GetActiveScene().name.Split('-')[1]));
+        GamePreservedStats.instance.idLevel = sceneId;
+        
         if (playerScript.IsDead)
             GamePreservedStats.instance.diedTime = countdownTimerScript.GetCurrentTime();
 

@@ -11,12 +11,14 @@ public class LevelMenu : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f;
+
         if (MenuGameMusicManager.instance != null && !MenuGameMusicManager.instance.audioSource.isPlaying) {
             StartCoroutine(AudioController.FadeIn(MenuGameMusicManager.instance.audioSource, 1f));
         }
 
         if (GameMusicManager.instance != null && GameMusicManager.instance.audioSource.isPlaying) {
-            StartCoroutine(AudioController.FadeOut(GameMusicManager.instance.audioSource, 1f));
+            StartCoroutine(AudioController.FadeOut(GameMusicManager.instance.audioSource, 0.2f));
         }
 
         backToMainMenuButton.onClick.AddListener(BackToMainMenu);

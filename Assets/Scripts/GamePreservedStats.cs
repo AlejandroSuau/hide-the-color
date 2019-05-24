@@ -6,6 +6,7 @@ public class GamePreservedStats : MonoBehaviour
 {
     public static GamePreservedStats instance = null;
 
+    public int idLevel;
     public bool gameSuccess;
     public float diedTime;
     public int eggs;

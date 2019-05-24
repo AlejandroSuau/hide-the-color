@@ -29,7 +29,7 @@ public class GameOverScreen : MonoBehaviour
             gameOverLogo.SetActive(true);
         }
 
-        string levelToLoad = "Level01";
+        string levelToLoad = "Level-" + GamePreservedStats.instance.idLevel;
 
         backToLevelsButton.onClick.AddListener(BackToLevels);
         loadLevelButton.onClick.AddListener(() => LoadLevel(levelToLoad));

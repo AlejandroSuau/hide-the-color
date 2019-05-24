@@ -18,7 +18,5 @@ public class MenuGameMusicManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         
         audioSource = GetComponent<AudioSource>();
-        
-        StartCoroutine(AudioController.FadeIn(audioSource, 1f));
     }
 }
