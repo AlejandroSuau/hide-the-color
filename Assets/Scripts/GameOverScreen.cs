@@ -16,6 +16,10 @@ public class GameOverScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (MenuGameMusicManager.instance != null) {
+            StartCoroutine(AudioController.FadeIn(MenuGameMusicManager.instance.audioSource, 1f));
+        }
+
         eggsDestroyedText.text = GamePreservedStats.instance.eggs.ToString();
 
         if (GamePreservedStats.instance.gameSuccess) {

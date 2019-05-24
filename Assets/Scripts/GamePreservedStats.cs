@@ -11,7 +11,6 @@ public class GamePreservedStats : MonoBehaviour
     public int eggs;
     public int medals;
 
-    // Start is called before the first frame update
     void Awake()
     {
         if (instance == null)

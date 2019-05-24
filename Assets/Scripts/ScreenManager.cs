@@ -39,10 +39,18 @@ public class ScreenManager : MonoBehaviour
 
         instance = this;
         
+        if (MenuGameMusicManager.instance != null && MenuGameMusicManager.instance.audioSource.isPlaying) { 
+            StartCoroutine(AudioController.FadeOut(MenuGameMusicManager.instance.audioSource, 0.2f));
+        }
+
+        if (GameMusicManager.instance != null && !GameMusicManager.instance.audioSource.isPlaying) {
+            StartCoroutine(AudioController.FadeIn(GameMusicManager.instance.audioSource, 1f));
+        }
+
         GamePreservedStats.instance.ResetStats();
         
         audioSource = GetComponent<AudioSource>();
-        audioSource.PlayOneShot(backgroundMusic, 0.1f);
+        //audioSource.PlayOneShot(backgroundMusic, 0.1f);
 
         countdownTimerScript = gameScreenUI.GetComponent<CountdownTimer>();
         eggsPanelScript = GetComponent<EggsPanel>();
@@ -120,7 +128,9 @@ public class ScreenManager : MonoBehaviour
     void EndGame()
     {
         // Stops background music.
-        audioSource.Stop();
+        if (GameMusicManager.instance != null) {
+            StartCoroutine(AudioController.FadeOut(GameMusicManager.instance.audioSource, 1f));
+        }
 
         GamePreservedStats.instance.gameSuccess = (!playerScript.IsDead && medalsScript.ObtainedMedals > 0);
         GamePreservedStats.instance.eggs = eggsPanelScript.DestroyedEggs;
