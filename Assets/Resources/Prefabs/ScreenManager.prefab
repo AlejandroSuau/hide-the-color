@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aec8ff5a41fe4e44872b35768820b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundMusic: {fileID: 8300000, guid: c87fc0dcb53c89e4e9a31dca83cdc5b4, type: 3}
   playerGO: {fileID: 0}
   medalsGO: {fileID: 5953959951394818342, guid: a139538df52366e4aabdc41972428254,
     type: 3}

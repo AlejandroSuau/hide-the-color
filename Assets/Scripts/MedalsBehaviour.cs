@@ -32,7 +32,7 @@ public class MedalsBehaviour : MonoBehaviour
             medalsGO[currentIndexMedalToObtain].GetComponent<SpriteRenderer>().color = WHITE_COLOR;
             medalsObtainedGO[currentIndexMedalToObtain].SetActive(true);
 
-            audioSource.PlayOneShot(audioMedalObtained, 0.5f);
+            audioSource.PlayOneShot(audioMedalObtained, 0.3f);
             currentIndexMedalToObtain ++;
 
             return true;

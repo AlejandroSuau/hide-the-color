@@ -19,7 +19,7 @@ public class CountdownTimer : MonoBehaviour
     private float secondElapsing;
 
     private bool wasInDangerTime;
-    private const int DANGER_TIME = 10;
+    private const int DANGER_TIME = 5;
 
     void Start()
     {
@@ -71,7 +71,7 @@ public class CountdownTimer : MonoBehaviour
 
     void PlayWarningSecondSound()
     {
-        audioSource.PlayOneShot(audioWarningSecond, 1f);
+        audioSource.PlayOneShot(audioWarningSecond, 0.3f);
     }
 
     void SetNormalColor()

@@ -9,6 +9,9 @@ public class ScreenManager : MonoBehaviour
 
     public static ScreenManager instance;
 
+    AudioSource audioSource;
+    public AudioClip backgroundMusic;
+
     public GameObject playerGO;
     public GameObject medalsGO;
     public Canvas gameScreenUI;
@@ -38,6 +41,9 @@ public class ScreenManager : MonoBehaviour
         
         GamePreservedStats.instance.ResetStats();
         
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(backgroundMusic, 0.1f);
+
         countdownTimerScript = gameScreenUI.GetComponent<CountdownTimer>();
         eggsPanelScript = GetComponent<EggsPanel>();
 
@@ -113,6 +119,9 @@ public class ScreenManager : MonoBehaviour
 
     void EndGame()
     {
+        // Stops background music.
+        audioSource.Stop();
+
         GamePreservedStats.instance.gameSuccess = (!playerScript.IsDead && medalsScript.ObtainedMedals > 0);
         GamePreservedStats.instance.eggs = eggsPanelScript.DestroyedEggs;
         GamePreservedStats.instance.medals = medalsScript.ObtainedMedals;
