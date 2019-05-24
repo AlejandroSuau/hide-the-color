@@ -90,6 +90,8 @@ public class ScreenManager : MonoBehaviour
 
             if (medalsScript.ObtainedMedals == 0)
                 playerScript.Death();
+            else
+                playerScript.Win();
 
             EndGame();
         }

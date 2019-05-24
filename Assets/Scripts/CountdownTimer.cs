@@ -8,6 +8,9 @@ public class CountdownTimer : MonoBehaviour
     public Text textTime;
     public Text textSeconds;
     
+    public AudioClip audioWarningSecond;
+    AudioSource audioSource;
+
     [SerializeField]
     private float startingTime;
     
@@ -20,6 +23,7 @@ public class CountdownTimer : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         wasInDangerTime = false;
         currentTime = startingTime;
         secondElapsing = 0;
@@ -33,22 +37,41 @@ public class CountdownTimer : MonoBehaviour
             
             secondElapsing += Time.deltaTime;
             if (secondElapsing >= 1 || currentTime <= 0) {
-                SwapFontColorIfNeeds(currentTime);
+                SwapFontColorIfNeeds();
                 UpdateTextTime();
+                
+                if (IsInWarningTime() && currentTime > 0)
+                    PlayWarningSecondSound();
+
                 secondElapsing = 0;
             }
         }
     }
 
-    void SwapFontColorIfNeeds(float secondElapsing)
+    bool IsInWarningTime()
+    {
+        return currentTime <= DANGER_TIME;
+    }
+
+    void SwapFontColorIfNeeds()
     {        
-        if (secondElapsing > DANGER_TIME && wasInDangerTime) {
+        if (!IsInWarningTime() && wasInDangerTime) {
             wasInDangerTime = false;
             SetNormalColor();
-        } else if (secondElapsing <= DANGER_TIME && !wasInDangerTime) {
+        } else if (IsInWarningTime() && !wasInDangerTime) {
             wasInDangerTime = true;
             SetDangerColor();
         }
+    }
+    
+    void UpdateTextTime()
+    {
+        textSeconds.text = (Mathf.Ceil(currentTime)).ToString();
+    }
+
+    void PlayWarningSecondSound()
+    {
+        audioSource.PlayOneShot(audioWarningSecond, 1f);
     }
 
     void SetNormalColor()
@@ -61,11 +84,6 @@ public class CountdownTimer : MonoBehaviour
     {
         textTime.color = Color.red;
         textSeconds.color = Color.red;
-    }
-
-    void UpdateTextTime()
-    {
-        textSeconds.text = (Mathf.Ceil(currentTime)).ToString();
     }
 
     public bool HasEnded()

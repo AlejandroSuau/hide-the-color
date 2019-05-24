@@ -97,6 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToChangeColor: 2.5
   audioDeath: {fileID: 8300000, guid: 401da0a20f1b95640ab6eadfaa445c9d, type: 3}
+  audioWin: {fileID: 8300000, guid: 0b04cd93c22e9e0429598feab1431267, type: 3}
 --- !u!82 &4524288176060625969
 AudioSource:
   m_ObjectHideFlags: 0

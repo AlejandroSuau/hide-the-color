@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private float currentTime;
 
     public AudioClip audioDeath;
+    public AudioClip audioWin;
     AudioSource audioSource;
 
     private Animator lifeAnimator;
@@ -74,5 +75,10 @@ public class Player : MonoBehaviour
     {
         audioSource.PlayOneShot(audioDeath, 0.5f);
         lifeAnimator.Play("LosingLife", 0, 0.0f);
+    }
+
+    public void Win()
+    {
+        audioSource.PlayOneShot(audioWin, 1f);
     }
 }
