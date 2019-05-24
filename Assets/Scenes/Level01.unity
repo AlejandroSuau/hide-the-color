@@ -1928,6 +1928,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1005034226378485941, guid: a139538df52366e4aabdc41972428254,
+        type: 3}
+      propertyPath: medalsNecessaryEggs.Array.data[1]
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005034226378485941, guid: a139538df52366e4aabdc41972428254,
+        type: 3}
+      propertyPath: medalsNecessaryEggs.Array.data[2]
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a139538df52366e4aabdc41972428254, type: 3}
 --- !u!1 &6406388674087909380 stripped
