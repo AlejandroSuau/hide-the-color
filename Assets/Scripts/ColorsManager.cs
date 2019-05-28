@@ -7,8 +7,7 @@ public enum GameColor
     Red,
     Yellow,
     Blue,
-    Green,
-    Purple
+    Green
 };
 
 public class ColorsManager : MonoBehaviour
