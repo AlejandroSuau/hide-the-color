@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class ArmoredEgg : BasicEgg
 {
-    private string EGG_TYPE_NAME = "Armored";
-    protected int lifes = 2;
+    private string ARMORED_EGG_TYPE = "Armored";
 
-    public virtual string SpriteName { get { return EGG_TYPE_NAME + "-" + color; } }
+    public override string SpriteName { get { return ARMORED_EGG_TYPE + "-" + color; } }
     public override bool IsDead { get { return lifes <= 0; } }
 
     public AudioClip audioDamaged;
+
+    void Start()
+    {
+        this.lifes = 2;
+    }
 
     public override void TakeDamage(int damage)
     {
@@ -20,7 +24,7 @@ public class ArmoredEgg : BasicEgg
             Death();
         } else
         {
-            EGG_TYPE_NAME += "-Damaged";
+            this.ARMORED_EGG_TYPE = "Armored-Damaged";
             audioSource.PlayOneShot(audioDamaged, 0.5f);
             SetColor(this.color);   
         }

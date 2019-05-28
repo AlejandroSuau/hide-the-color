@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BasicEgg : MonoBehaviour
 {
-    private string EGG_TYPE_NAME = "Basic";
+    private string BASIC_EGG_TYPE = "Basic";
     
     public AudioClip audioDeath;
 
@@ -17,9 +17,11 @@ public class BasicEgg : MonoBehaviour
     
     public int Damage { get { return 0; } }
     public int Lifes { get { return lifes; } }
-    public virtual string SpriteName { get { return EGG_TYPE_NAME + "-" + color; } }
+    public virtual string SpriteName { get { return BASIC_EGG_TYPE + "-" + color; } }
     public virtual GameColor Color { get { return color; } }
     public virtual bool IsDead { get { return lifes <= 0; } }
+
+    public virtual void SetEggsPanel(EggsPanel ep) {}
 
     protected void Awake()
     {

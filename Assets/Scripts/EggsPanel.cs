@@ -41,16 +41,34 @@ public class EggsPanel : MonoBehaviour
             Vector3 eggPosition = platforms[i].GetComponent<Transform>().position;
             eggPosition.y += EXTRA_EGG_POSITION_Y;
 
-            /* BasicEgg newEgg = (BasicEgg) Instantiate(
-                Resources.Load<BasicEgg>("Prefabs/BasicEgg"), eggPosition, Quaternion.identity);*/
+            string choseEggType = "ColorChanger";
+            switch(choseEggType)
+            {
+                default:
+                case "Basic":
+                    BasicEgg basicEgg = (BasicEgg) Instantiate(
+                        Resources.Load<BasicEgg>("Prefabs/BasicEgg"), eggPosition, Quaternion.identity);
+                    basicEgg.SetColor(ColorsManager.instance.GetRandomColor());
+                    basicEgg.name =  i + "-" + basicEgg.SpriteName;
+                    eggs[i] = basicEgg;
+                    break;
+                case "Armored":
+                    ArmoredEgg armoredEgg = (ArmoredEgg) Instantiate(
+                        Resources.Load<ArmoredEgg>("Prefabs/ArmoredEgg"), eggPosition, Quaternion.identity);
+                    armoredEgg.SetColor(ColorsManager.instance.GetRandomColor());
+                    armoredEgg.name =  i + "-" + armoredEgg.SpriteName;
+                    eggs[i] = armoredEgg;
+                    break;
+                case "ColorChanger":
+                    ColorChangerEgg colorChangerEgg = (ColorChangerEgg) Instantiate(
+                        Resources.Load<ColorChangerEgg>("Prefabs/ColorChangerEgg"), eggPosition, Quaternion.identity);
+                    colorChangerEgg.SetEggsPanel(this);
+                    colorChangerEgg.SetColor(ColorsManager.instance.GetRandomColor());
+                    colorChangerEgg.name =  i + "-" + colorChangerEgg.SpriteName;
+                    eggs[i] = colorChangerEgg;
+                    break;
+            }
 
-            ArmoredEgg newEgg = (ArmoredEgg) Instantiate(
-                Resources.Load<ArmoredEgg>("Prefabs/ArmoredEgg"), eggPosition, Quaternion.identity);
-
-            newEgg.SetColor(ColorsManager.instance.GetRandomColor());
-            newEgg.name =  i + "-" + newEgg.SpriteName;
-
-            eggs[i] = newEgg;
             remainingEggs ++;
         }
     }
@@ -114,5 +132,14 @@ public class EggsPanel : MonoBehaviour
     public BasicEgg[] GetEggs()
     {
         return this.eggs;
+    }
+
+    public void SwitchAllAliveEggColors()
+    {
+        foreach(BasicEgg egg in eggs) {
+            if (!egg.IsDead) {
+                egg.SetColor(ColorsManager.instance.GetRandomColorDistinctTo(egg.Color));
+            }
+        }
     }
 }
