@@ -22,7 +22,7 @@ public class EggsPanel : MonoBehaviour
     const float WAITING_TIME_BEFORE_SPAWN_PANEL = 0.20f; 
     const float EXTRA_EGG_POSITION_Y =  0.70f;
 
-    void Awake()
+    protected void Awake()
     {
         eggs = new BasicEgg[platforms.Length];
         destroyedEggs = 0;
@@ -34,11 +34,6 @@ public class EggsPanel : MonoBehaviour
         SpawnEggs();
     }
 
-    void Start()
-    {
-        //AnimateEggsWithTheSameColorAs( ScreenManager.instance.PlayerScript.Color);
-    }
-
     public void SpawnEggs()
     {
         for(int i = 0; i < eggs.Length; i++) {
@@ -48,8 +43,8 @@ public class EggsPanel : MonoBehaviour
 
             BasicEgg newEgg = (BasicEgg) Instantiate(
                 Resources.Load<BasicEgg>("Prefabs/BasicEgg"), eggPosition, Quaternion.identity);
-            newEgg.name =  i + "-" + BasicEgg.EGG_TYPE_NAME;
             newEgg.SetColor(ColorsManager.instance.GetRandomColor());
+            newEgg.name =  i + "-" + newEgg.SpriteName;
 
             eggs[i] = newEgg;
             remainingEggs ++;
@@ -99,7 +94,7 @@ public class EggsPanel : MonoBehaviour
         return false;
     }
 
-    void UpdateEggsCounterText()
+    protected void UpdateEggsCounterText()
     {
         eggsCounter.text = destroyedEggs.ToString();
     }

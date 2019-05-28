@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class BasicEgg : MonoBehaviour
 {
-    public const string EGG_TYPE_NAME = "Basic";
+    protected const string EGG_TYPE_NAME = "Basic";
     
     public AudioClip audioDeath;
 
-    AudioSource audioSource;
+    protected AudioSource audioSource;
 
-    private GameColor color;
-    private int lifes = 1;
-    private SpriteRenderer spriteRenderer;
-    private Animator animator;
+    protected GameColor color;
+    protected int lifes = 1;
+    protected SpriteRenderer spriteRenderer;
+    protected Animator animator;
     
     public int Damage { get { return 0; } }
     public int Lifes { get { return lifes; } }
-    public string SpriteName { get { return BasicEgg.EGG_TYPE_NAME + "-" + color; } }
+    public string SpriteName { get { return EGG_TYPE_NAME + "-" + color; } }
     public GameColor Color { get { return color; } }
     public bool IsDead { get { return lifes <= 0; } }
 

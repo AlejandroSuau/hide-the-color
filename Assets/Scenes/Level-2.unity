@@ -211,7 +211,7 @@ PrefabInstance:
     - target: {fileID: 7258708170119134029, guid: 26a0dfd1c6256004094db9e4763ed88b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.69
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7258708170119134029, guid: 26a0dfd1c6256004094db9e4763ed88b,
         type: 3}
@@ -286,7 +286,7 @@ PrefabInstance:
     - target: {fileID: 7258708170119134029, guid: 26a0dfd1c6256004094db9e4763ed88b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.7
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7258708170119134029, guid: 26a0dfd1c6256004094db9e4763ed88b,
         type: 3}
@@ -430,7 +430,7 @@ PrefabInstance:
     - target: {fileID: 7258708170119134029, guid: 26a0dfd1c6256004094db9e4763ed88b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.31
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 7258708170119134029, guid: 26a0dfd1c6256004094db9e4763ed88b,
         type: 3}
@@ -505,7 +505,7 @@ PrefabInstance:
     - target: {fileID: 7258708170119134029, guid: 26a0dfd1c6256004094db9e4763ed88b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.26
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 7258708170119134029, guid: 26a0dfd1c6256004094db9e4763ed88b,
         type: 3}
@@ -1053,7 +1053,7 @@ PrefabInstance:
     - target: {fileID: 7258708170119134029, guid: 26a0dfd1c6256004094db9e4763ed88b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.08
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7258708170119134029, guid: 26a0dfd1c6256004094db9e4763ed88b,
         type: 3}
@@ -1203,7 +1203,7 @@ PrefabInstance:
     - target: {fileID: 7258708170119134029, guid: 26a0dfd1c6256004094db9e4763ed88b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7258708170119134029, guid: 26a0dfd1c6256004094db9e4763ed88b,
         type: 3}
