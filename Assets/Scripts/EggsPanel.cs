@@ -41,7 +41,7 @@ public class EggsPanel : MonoBehaviour
             Vector3 eggPosition = platforms[i].GetComponent<Transform>().position;
             eggPosition.y += EXTRA_EGG_POSITION_Y;
 
-            string choseEggType = "ColorChanger";
+            string choseEggType = "Basic";
             switch(choseEggType)
             {
                 default:
