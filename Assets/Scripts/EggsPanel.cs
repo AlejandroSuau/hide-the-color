@@ -41,8 +41,12 @@ public class EggsPanel : MonoBehaviour
             Vector3 eggPosition = platforms[i].GetComponent<Transform>().position;
             eggPosition.y += EXTRA_EGG_POSITION_Y;
 
-            BasicEgg newEgg = (BasicEgg) Instantiate(
-                Resources.Load<BasicEgg>("Prefabs/BasicEgg"), eggPosition, Quaternion.identity);
+            /* BasicEgg newEgg = (BasicEgg) Instantiate(
+                Resources.Load<BasicEgg>("Prefabs/BasicEgg"), eggPosition, Quaternion.identity);*/
+
+            ArmoredEgg newEgg = (ArmoredEgg) Instantiate(
+                Resources.Load<ArmoredEgg>("Prefabs/ArmoredEgg"), eggPosition, Quaternion.identity);
+
             newEgg.SetColor(ColorsManager.instance.GetRandomColor());
             newEgg.name =  i + "-" + newEgg.SpriteName;
 

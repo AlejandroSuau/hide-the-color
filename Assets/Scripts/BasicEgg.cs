@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BasicEgg : MonoBehaviour
 {
-    protected const string EGG_TYPE_NAME = "Basic";
+    private string EGG_TYPE_NAME = "Basic";
     
     public AudioClip audioDeath;
 
@@ -17,11 +17,11 @@ public class BasicEgg : MonoBehaviour
     
     public int Damage { get { return 0; } }
     public int Lifes { get { return lifes; } }
-    public string SpriteName { get { return EGG_TYPE_NAME + "-" + color; } }
-    public GameColor Color { get { return color; } }
-    public bool IsDead { get { return lifes <= 0; } }
+    public virtual string SpriteName { get { return EGG_TYPE_NAME + "-" + color; } }
+    public virtual GameColor Color { get { return color; } }
+    public virtual bool IsDead { get { return lifes <= 0; } }
 
-    public void Awake()
+    protected void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -33,13 +33,13 @@ public class BasicEgg : MonoBehaviour
         return (this.color == color);
     }
 
-    public void SetColor(GameColor color)
+    public virtual void SetColor(GameColor color)
     {
         this.color = color;
         spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/" + SpriteName);
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         lifes -= damage;
         if (IsDead)
@@ -51,7 +51,7 @@ public class BasicEgg : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void Death()
+    protected void Death()
     {
         audioSource.PlayOneShot(audioDeath, 0.5f);
         spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/Destroying-Egg-Animation-3");
