@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private EggsPanel eggsPanelScript;
 
+    const int CONSECUTIVE_ERROR_COLORS = 1;
+    int stackedIncorrectColors;
+
     public int Damage { get { return 1; } }
     public int Lifes { get { return lifes; } }
     public string SpriteName { get { return "Player-" + color; } }
@@ -28,6 +31,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
+        stackedIncorrectColors = 0;
         spriteRenderer = GetComponent<SpriteRenderer>();
         changingColorBar = GetComponentInChildren<ChangingColorBar>();
         lifeAnimator = this.gameObject.transform.GetChild(1).gameObject.GetComponent<Animator>();
@@ -58,7 +62,17 @@ public class Player : MonoBehaviour
         GameColor newColor = ColorsManager.instance.GetRandomColorDistinctTo(color);
         if (!eggsPanelScript.DoesExistsInEggsThis(newColor)) 
         {
-            newColor = eggsPanelScript.ObtainFirstCorrectColor();
+            if (stackedIncorrectColors == CONSECUTIVE_ERROR_COLORS)
+            {
+                stackedIncorrectColors = 0;
+                newColor = eggsPanelScript.ObtainFirstCorrectColor();
+            } else 
+            {
+                stackedIncorrectColors ++;
+            }
+        } else 
+        {
+            stackedIncorrectColors = 0;
         }
 
         ChangeToADesiredColor(newColor);
