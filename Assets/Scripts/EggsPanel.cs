@@ -89,7 +89,6 @@ public class EggsPanel : MonoBehaviour
                 if(IsEmpty) {
                     audioSource.PlayOneShot(audioPanelCleanned, 0.5f);
                     Invoke("SpawnEggs", WAITING_TIME_BEFORE_SPAWN_PANEL);
-                    //AnimateEggsWithTheSameColorAs( ScreenManager.instance.PlayerScript.Color);
                 }
             }
         } else {
