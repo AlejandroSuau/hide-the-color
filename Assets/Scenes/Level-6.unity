@@ -1446,7 +1446,7 @@ PrefabInstance:
     - target: {fileID: 4524288176060625968, guid: 281fd66f23c6acf4c80700595e404291,
         type: 3}
       propertyPath: timeToChangeColor
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 281fd66f23c6acf4c80700595e404291, type: 3}
