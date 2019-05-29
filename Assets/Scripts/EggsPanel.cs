@@ -7,6 +7,7 @@ public class EggsPanel : MonoBehaviour
 {
     public Text eggsCounter;
     public GameObject[] platforms;
+    public EggType[] eggTypes;
     
     AudioSource audioSource;
     public AudioClip audioPanelCleanned;
@@ -36,30 +37,30 @@ public class EggsPanel : MonoBehaviour
 
     public void SpawnEggs()
     {
+        ShuffleEggTypes(ref eggTypes);
         for(int i = 0; i < eggs.Length; i++) {
             if (eggs[i] != null) eggs[i].DestroyGO();
             Vector3 eggPosition = platforms[i].GetComponent<Transform>().position;
             eggPosition.y += EXTRA_EGG_POSITION_Y;
 
-            string choseEggType = "Basic";
-            switch(choseEggType)
+            switch(eggTypes[i])
             {
                 default:
-                case "Basic":
+                case EggType.BASIC:
                     BasicEgg basicEgg = (BasicEgg) Instantiate(
                         Resources.Load<BasicEgg>("Prefabs/BasicEgg"), eggPosition, Quaternion.identity);
                     basicEgg.SetColor(ColorsManager.instance.GetRandomColor());
                     basicEgg.name =  i + "-" + basicEgg.SpriteName;
                     eggs[i] = basicEgg;
                     break;
-                case "Armored":
+                case EggType.ARMORED:
                     ArmoredEgg armoredEgg = (ArmoredEgg) Instantiate(
                         Resources.Load<ArmoredEgg>("Prefabs/ArmoredEgg"), eggPosition, Quaternion.identity);
                     armoredEgg.SetColor(ColorsManager.instance.GetRandomColor());
                     armoredEgg.name =  i + "-" + armoredEgg.SpriteName;
                     eggs[i] = armoredEgg;
                     break;
-                case "ColorChanger":
+                case EggType.COLORCHANGER:
                     ColorChangerEgg colorChangerEgg = (ColorChangerEgg) Instantiate(
                         Resources.Load<ColorChangerEgg>("Prefabs/ColorChangerEgg"), eggPosition, Quaternion.identity);
                     colorChangerEgg.SetEggsPanel(this);
@@ -140,6 +141,16 @@ public class EggsPanel : MonoBehaviour
             if (!egg.IsDead) {
                 egg.SetColor(ColorsManager.instance.GetRandomColorDistinctTo(egg.Color));
             }
+        }
+    }
+
+    void ShuffleEggTypes(ref EggType[] eggTypes)
+    {
+        for(int i = eggTypes.Length - 1; i > 0; i--) {
+            int r = Random.Range(0, i);
+            EggType tmp = eggTypes[i];
+            eggTypes[i] = eggTypes[r];
+            eggTypes[r] = tmp;
         }
     }
 }

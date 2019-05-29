@@ -2,9 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EggType
+{
+    BASIC,
+    ARMORED,
+    COLORCHANGER
+}
+
 public class BasicEgg : MonoBehaviour
 {
-    private string BASIC_EGG_TYPE = "Basic";
+    private string BASIC_EGG_TYPE_NAME = "Basic";
     
     public AudioClip audioDeath;
 
@@ -17,7 +24,7 @@ public class BasicEgg : MonoBehaviour
     
     public int Damage { get { return 0; } }
     public int Lifes { get { return lifes; } }
-    public virtual string SpriteName { get { return BASIC_EGG_TYPE + "-" + color; } }
+    public virtual string SpriteName { get { return BASIC_EGG_TYPE_NAME + "-" + color; } }
     public virtual GameColor Color { get { return color; } }
     public virtual bool IsDead { get { return lifes <= 0; } }
 

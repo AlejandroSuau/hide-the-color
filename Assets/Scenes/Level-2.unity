@@ -649,6 +649,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4138142368940006309, guid: 4b957ef0bd5c30c409255eea9268811b,
         type: 3}
+      propertyPath: eggTypes.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138142368940006309, guid: 4b957ef0bd5c30c409255eea9268811b,
+        type: 3}
       propertyPath: platforms.Array.data[0]
       value: 
       objectReference: {fileID: 858260701}
@@ -682,6 +687,16 @@ PrefabInstance:
       propertyPath: eggsCounter
       value: 
       objectReference: {fileID: 1266710027}
+    - target: {fileID: 4138142368940006309, guid: 4b957ef0bd5c30c409255eea9268811b,
+        type: 3}
+      propertyPath: eggTypes.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138142368940006309, guid: 4b957ef0bd5c30c409255eea9268811b,
+        type: 3}
+      propertyPath: eggTypes.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1630526958966365318, guid: 4b957ef0bd5c30c409255eea9268811b,
         type: 3}
       propertyPath: m_Camera

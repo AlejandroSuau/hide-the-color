@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ColorChangerEgg : BasicEgg
 {
-    private string COLORCHANGER_EGG_TYPE = "Color-Changer";
+    private string COLORCHANGER_EGG_TYPE_NAME = "Color-Changer";
 
-    public override string SpriteName { get { return COLORCHANGER_EGG_TYPE + "-" + color; } }
+    public override string SpriteName { get { return COLORCHANGER_EGG_TYPE_NAME + "-" + color; } }
     public override bool IsDead { get { return lifes <= 0; } }
 
     private EggsPanel eggsPanel;
