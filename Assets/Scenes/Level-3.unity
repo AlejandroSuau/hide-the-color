@@ -1352,7 +1352,7 @@ PrefabInstance:
     - target: {fileID: 1005034226378485941, guid: a139538df52366e4aabdc41972428254,
         type: 3}
       propertyPath: medalsNecessaryEggs.Array.data[0]
-      value: 15
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1005034226378485941, guid: a139538df52366e4aabdc41972428254,
         type: 3}
@@ -1362,7 +1362,12 @@ PrefabInstance:
     - target: {fileID: 1005034226378485941, guid: a139538df52366e4aabdc41972428254,
         type: 3}
       propertyPath: medalsNecessaryEggs.Array.data[2]
-      value: 35
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6132365316702191976, guid: a139538df52366e4aabdc41972428254,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a139538df52366e4aabdc41972428254, type: 3}
