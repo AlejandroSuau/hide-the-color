@@ -20,9 +20,6 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private EggsPanel eggsPanelScript;
 
-    const int CONSECUTIVE_ERROR_COLORS = 1;
-    int stackedIncorrectColors;
-
     public int Damage { get { return 1; } }
     public int Lifes { get { return lifes; } }
     public string SpriteName { get { return "Player-" + color; } }
@@ -62,17 +59,7 @@ public class Player : MonoBehaviour
         GameColor newColor = ColorsManager.instance.GetRandomColorDistinctTo(color);
         if (!eggsPanelScript.DoesExistsInEggsThis(newColor)) 
         {
-            if (stackedIncorrectColors == CONSECUTIVE_ERROR_COLORS)
-            {
-                stackedIncorrectColors = 0;
-                newColor = eggsPanelScript.ObtainFirstCorrectColor();
-            } else 
-            {
-                stackedIncorrectColors ++;
-            }
-        } else 
-        {
-            stackedIncorrectColors = 0;
+            newColor = eggsPanelScript.ObtainFirstCorrectColor();
         }
 
         ChangeToADesiredColor(newColor);

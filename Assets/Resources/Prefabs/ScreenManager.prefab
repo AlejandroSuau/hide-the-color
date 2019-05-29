@@ -82,6 +82,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  eggTypes: 
   audioPanelCleanned: {fileID: 8300000, guid: 4802c521862d92145b03b968bb2b016a, type: 3}
 --- !u!82 &6613654791458914520
 AudioSource:
@@ -528,7 +529,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 600, y: 800}
+  m_ReferenceResolution: {x: 400, y: 800}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
