@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        stackedIncorrectColors = 0;
         spriteRenderer = GetComponent<SpriteRenderer>();
         changingColorBar = GetComponentInChildren<ChangingColorBar>();
         lifeAnimator = this.gameObject.transform.GetChild(1).gameObject.GetComponent<Animator>();
