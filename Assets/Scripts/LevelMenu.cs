@@ -31,8 +31,14 @@ public class LevelMenu : MonoBehaviour
         }
 
         backToMainMenuButton.onClick.AddListener(BackToMainMenu);
+        int i = 0;
         foreach(Button levelButton in levelButtons) {
-            levelButton.onClick.AddListener(() => LoadLevel(levelButton.name));
+            if (i == 0) {
+                levelButton.onClick.AddListener(GoToStory);
+            } else {
+                levelButton.onClick.AddListener(() => LoadLevel(levelButton.name));
+            }
+            i ++;
         }
     }
 
@@ -41,7 +47,12 @@ public class LevelMenu : MonoBehaviour
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
-    void LoadLevel(string buttonName )
+    void GoToStory()
+    {
+        SceneManager.LoadScene("Story", LoadSceneMode.Single);
+    }
+
+    void LoadLevel(string buttonName)
     {
         StartCoroutine(LoadAsynchronously(buttonName));
     }
