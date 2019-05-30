@@ -6,8 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class LevelMenu : MonoBehaviour
 {
+    public GameObject levelsMenu;
     public Button backToMainMenuButton;
     public Button[] levelButtons;
+
+    public GameObject loadingScreen;
+    public Slider slider;
+
+    void Awake()
+    {
+        levelsMenu.SetActive(true);
+    }
 
     void Start()
     {
@@ -34,6 +43,20 @@ public class LevelMenu : MonoBehaviour
 
     void LoadLevel(string buttonName )
     {
-        SceneManager.LoadScene(buttonName, LoadSceneMode.Single);
+        StartCoroutine(LoadAsynchronously(buttonName));
+    }
+
+    IEnumerator LoadAsynchronously(string buttonName)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(buttonName);
+        levelsMenu.SetActive(false);
+        loadingScreen.SetActive(true);
+
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress/.9f);
+            slider.value = progress;
+            yield return null;
+        }
     }
 }
