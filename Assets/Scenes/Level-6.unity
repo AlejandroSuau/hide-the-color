@@ -1090,7 +1090,7 @@ PrefabInstance:
     - target: {fileID: 7237178293815844614, guid: d40eaaac56cb05448a76d28ef1378246,
         type: 3}
       propertyPath: startingTime
-      value: 75
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d40eaaac56cb05448a76d28ef1378246, type: 3}
@@ -1566,7 +1566,7 @@ PrefabInstance:
     - target: {fileID: 7188731568171911295, guid: 8713a062dae66954f8e0d63309ec5df8,
         type: 3}
       propertyPath: medalsNecessaryEggs.Array.data[0]
-      value: 30
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7188731568171911295, guid: 8713a062dae66954f8e0d63309ec5df8,
         type: 3}

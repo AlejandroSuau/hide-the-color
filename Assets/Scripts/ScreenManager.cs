@@ -148,6 +148,12 @@ public class ScreenManager : MonoBehaviour
 
     void LoadGameOverScene()
     {
-        SceneManager.LoadScene("GameOver");
+        if (GamePreservedStats.instance.gameSuccess)
+        {
+            SceneManager.LoadScene("GameCompleted");
+        } else
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 }
