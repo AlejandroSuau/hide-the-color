@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MedalsBehaviour : MonoBehaviour
 {
     public GameObject[] medalsGO; // Third medal => medalsGO[0]
     public GameObject[] medalsObtainedGO;
     public int[] medalsNecessaryEggs; // Third medal necessary eggs -> medalsNecessaryEggs[0]
+    public Text[] medalsTexts;
 
     private int currentIndexMedalToObtain;
 
@@ -19,6 +21,10 @@ public class MedalsBehaviour : MonoBehaviour
 
     void Start()
     {
+        for(int i = 0; i < medalsNecessaryEggs.Length; i++) {
+            medalsTexts[i].text = medalsNecessaryEggs[i].ToString();
+        }
+
         audioSource = GetComponent<AudioSource>();
         currentIndexMedalToObtain = 0;
     }
