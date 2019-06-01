@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameOverScreen : MonoBehaviour
 {
     public GameObject gameOverLogo, gameCompletedLogo;
-    public Text eggsDestroyedText;
+    public Text eggsDestroyedText, levelIndicator;
     public Button backToLevelsButton, loadLevelButton;
 
     public GameObject[] medals;
@@ -30,6 +30,7 @@ public class GameOverScreen : MonoBehaviour
         }
 
         string levelToLoad = "Level-" + GamePreservedStats.instance.idLevel;
+        levelIndicator.text += GamePreservedStats.instance.idLevel.ToString();
 
         backToLevelsButton.onClick.AddListener(BackToLevels);
         loadLevelButton.onClick.AddListener(() => LoadLevel(levelToLoad));
