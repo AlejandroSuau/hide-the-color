@@ -13,6 +13,9 @@ public class LevelMenu : MonoBehaviour
     public GameObject loadingScreen;
     public Slider slider;
 
+    int currentPlayerLevel;
+    private Color WHITE_COLOR = new Color(255, 255, 255);
+
     void Awake()
     {
         levelsMenu.SetActive(true);
@@ -20,6 +23,12 @@ public class LevelMenu : MonoBehaviour
 
     void Start()
     {
+        if (PlayerPrefs.HasKey("CurrentLevel")) {
+            currentPlayerLevel = PlayerPrefs.GetInt("CurrentLevel");
+        } else {
+            currentPlayerLevel = 1;
+        }
+
         Time.timeScale = 1f;
 
         if (MenuGameMusicManager.instance != null && !MenuGameMusicManager.instance.audioSource.isPlaying) {
@@ -31,14 +40,17 @@ public class LevelMenu : MonoBehaviour
         }
 
         backToMainMenuButton.onClick.AddListener(BackToMainMenu);
-        int i = 0;
-        foreach(Button levelButton in levelButtons) {
-            if (i == 0) {
-                levelButton.onClick.AddListener(GoToStory);
-            } else {
-                levelButton.onClick.AddListener(() => LoadLevel(levelButton.name));
+
+        for (int i = 0; i < currentPlayerLevel; i++) {
+            levelButtons[i].GetComponent<Image>().color = WHITE_COLOR;
+            levelButtons[i].interactable = true;
+            if (i == 0) 
+            {
+                levelButtons[i].onClick.AddListener(GoToStory);
+            } else
+            {
+                levelButtons[i].onClick.AddListener(() => LoadLevel(levelButtons[i].name));
             }
-            i ++;
         }
     }
 

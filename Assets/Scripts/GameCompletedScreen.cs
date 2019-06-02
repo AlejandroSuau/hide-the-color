@@ -14,6 +14,13 @@ public class GameCompletedScreen : MonoBehaviour
 
     void Start()
     {
+        // Unlock new lv if needed.
+        if (PlayerPrefs.GetInt("CurrentLevel") == GamePreservedStats.instance.idLevel 
+                && GamePreservedStats.instance.idLevel != 6) {
+            int unlockedNewLevel = GamePreservedStats.instance.idLevel + 1;
+            PlayerPrefs.SetInt("CurrentLevel", unlockedNewLevel);
+        }
+
         if (MenuGameMusicManager.instance != null) {
             StartCoroutine(AudioController.FadeIn(MenuGameMusicManager.instance.audioSource, 1f));
         }
