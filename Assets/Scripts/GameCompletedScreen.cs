@@ -20,7 +20,7 @@ public class GameCompletedScreen : MonoBehaviour
             int unlockedNewLevel = GamePreservedStats.instance.idLevel + 1;
             PlayerPrefs.SetInt("CurrentLevel", unlockedNewLevel);
         }
-
+        
         if (MenuGameMusicManager.instance != null) {
             StartCoroutine(AudioController.FadeIn(MenuGameMusicManager.instance.audioSource, 1f));
         }

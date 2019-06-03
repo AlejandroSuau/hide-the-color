@@ -49,7 +49,8 @@ public class LevelMenu : MonoBehaviour
                 levelButtons[i].onClick.AddListener(GoToStory);
             } else
             {
-                levelButtons[i].onClick.AddListener(() => LoadLevel(levelButtons[i].name));
+                string levelSceneName = levelButtons[i].name;
+                levelButtons[i].onClick.AddListener(delegate {LoadLevel(levelSceneName); });
             }
         }
     }
