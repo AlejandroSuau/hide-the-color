@@ -23,11 +23,11 @@ public class LevelMenu : MonoBehaviour
 
     void Start()
     {
-        if (PlayerPrefs.HasKey("CurrentLevel")) {
-            currentPlayerLevel = PlayerPrefs.GetInt("CurrentLevel");
-        } else {
-            currentPlayerLevel = 1;
+        if (!PlayerPrefs.HasKey("CurrentLevel")) {
+            PlayerPrefs.SetInt("CurrentLevel", 1);
         }
+
+        currentPlayerLevel = PlayerPrefs.GetInt("CurrentLevel"); 
 
         Time.timeScale = 1f;
 
