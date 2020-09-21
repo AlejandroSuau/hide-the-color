@@ -1,2 +1,2 @@
 # Hide The Color
-Hide The Color is an Unity Game developed in C# for Computer Engineering Thesis.
+Hide The Color is a mobile game developed with Unity and C# for Computer Engineering Thesis.
